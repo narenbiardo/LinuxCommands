@@ -10,426 +10,642 @@
 		/>
 		<style>
 			:root {
-				--bg: #0b0c10;
-				--surface: rgba(255, 255, 255, 0.06);
-				--surface-2: rgba(255, 255, 255, 0.08);
-				--text: #e8f1f2;
-				--muted: #a9b2b3;
-				--accent: #7cf7d4;
-				--accent-2: #6bbcff;
-				--ring: rgba(124, 247, 212, 0.35);
-				--shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
-				--radius-lg: 16px;
-				--radius-xl: 22px;
-				--blur: 10px;
-			}
+        --bg: #0b0c10;
+        --surface: rgba(255, 255, 255, 0.06);
+        --surface-2: rgba(255, 255, 255, 0.08);
+        --text: #e8f1f2;
+        --muted: #a9b2b3;
+        --accent: #7cf7d4;
+        --accent-2: #6bbcff;
+        --ring: rgba(124, 247, 212, 0.35);
+        --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+        --radius-lg: 16px;
+        --radius-xl: 22px;
+        --blur: 10px;
+    }
 
-			html,
-			body {
-				height: 100%;
-			}
-			body {
-				margin: 0;
-				color: var(--text);
-				background: var(--bg);
-				font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu,
-					Cantarell, Noto Sans, Helvetica, Arial, sans-serif;
-				-webkit-font-smoothing: antialiased;
-				text-rendering: optimizeLegibility;
-				overflow-y: overlay;
-				position: relative;
-			}
+    html,
+    body {
+        height: 100%;
+    }
+    body {
+        margin: 0;
+        color: var(--text);
+        background: var(--bg);
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+        overflow-y: overlay;
+        position: relative;
+    }
 
-			.background {
-				position: fixed;
-				top: 0;
-				left: 0;
-				width: 100%;
-				height: 200%;
-				z-index: -1;
-				background: 
-					radial-gradient(
-							circle at 30% 40%,
-							rgba(66, 141, 255, 0.15) 0%,
-							transparent 40%
-						),
-					radial-gradient(
-							circle at 70% 20%,
-							rgba(124, 247, 212, 0.12) 0%,
-							transparent 40%
-						),
-					radial-gradient(
-							circle at 50% 50%,
-							rgba(255, 255, 255, 0.03) 1px,
-							transparent 1px
-						),
-					linear-gradient(
-							to bottom,
-							rgba(11, 12, 16, 0.9) 0%,
-							rgba(18, 25, 44, 0.7) 40%,
-							rgba(11, 12, 16, 0.9) 100%
-						);
-				background-size: 100% 100%, 100% 100%, 30px 30px, 100% 100%;
-				animation: backgroundScroll 120s linear infinite;
-				pointer-events: none;
-			}
+    .background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 200%;
+        z-index: -1;
+        background:
+            radial-gradient(
+                    circle at 30% 40%,
+                    rgba(66, 141, 255, 0.15) 0%,
+                    transparent 40%
+                ),
+            radial-gradient(
+                    circle at 70% 20%,
+                    rgba(124, 247, 212, 0.12) 0%,
+                    transparent 40%
+                ),
+            radial-gradient(
+                    circle at 50% 50%,
+                    rgba(255, 255, 255, 0.03) 1px,
+                    transparent 1px
+                ),
+            linear-gradient(
+                    to bottom,
+                    rgba(11, 12, 16, 0.9) 0%,
+                    rgba(18, 25, 44, 0.7) 40%,
+                    rgba(11, 12, 16, 0.9) 100%
+                );
+        background-size: 100% 100%, 100% 100%, 30px 30px, 100% 100%;
+        animation: backgroundScroll 120s linear infinite;
+        pointer-events: none;
+    }
 
-			@keyframes backgroundScroll {
-				0% {
-					transform: translateY(0);
-				}
-				100% {
-					transform: translateY(-50%);
-				}
-			}
+    @keyframes backgroundScroll {
+        0% {
+            transform: translateY(0);
+        }
+        100% {
+            transform: translateY(-50%);
+        }
+    }
 
-			.wrap {
-				max-width: 1100px;
-				margin: 40px auto;
-				padding: 0 20px 80px;
-			}
+    .wrap {
+        max-width: 1100px;
+        margin: 40px auto;
+        padding: 0 20px 80px;
+    }
 
-			header {
-				display: flex;
-				align-items: center;
-				justify-content: space-between;
-				gap: 16px;
-				margin-bottom: 20px;
-			}
-			.title {
-				font-weight: 800;
-				letter-spacing: 0.4px;
-				line-height: 1.05;
-				margin: 0;
-				font-size: clamp(28px, 4vw, 44px);
-				background: linear-gradient(90deg, var(--accent), var(--accent-2));
-				-webkit-background-clip: text;
-				background-clip: text;
-				color: transparent;
-				filter: drop-shadow(0 6px 18px rgba(124, 247, 212, 0.12));
-			}
-			.subtitle {
-				margin: 6px 0 0;
-				color: var(--muted);
-				font-size: clamp(12px, 1.8vw, 14.5px);
-			}
+    header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        margin-bottom: 20px;
+    }
+    .title {
+        font-weight: 800;
+        letter-spacing: 0.4px;
+        line-height: 1.05;
+        margin: 0;
+        font-size: clamp(28px, 4vw, 44px);
+        background: linear-gradient(90deg, var(--accent), var(--accent-2));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        filter: drop-shadow(0 6px 18px rgba(124, 247, 212, 0.12));
+    }
+    .subtitle {
+        margin: 6px 0 0;
+        color: var(--muted);
+        font-size: clamp(12px, 1.8vw, 14.5px);
+    }
 
-			.panel {
-				position: sticky;
-				top: 10px;
-				z-index: 5;
-				backdrop-filter: blur(var(--blur));
-				background: linear-gradient(
-					180deg,
-					rgba(255, 255, 255, 0.06),
-					rgba(255, 255, 255, 0.03)
-				);
-				border: 1px solid rgba(255, 255, 255, 0.12);
-				box-shadow: var(--shadow);
-				border-radius: var(--radius-xl);
-				padding: 14px;
-				margin: 18px 0 22px;
-			}
+    .panel {
+        position: sticky;
+        top: 10px;
+        z-index: 5;
+        backdrop-filter: blur(var(--blur));
+        background: linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 0.06),
+            rgba(255, 255, 255, 0.03)
+        );
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        box-shadow: var(--shadow);
+        border-radius: var(--radius-xl);
+        padding: 14px;
+        margin: 18px 0 22px;
+    }
 
-			.controls {
-				display: grid;
-				grid-template-columns: 1fr auto;
-				gap: 12px;
-				align-items: center;
-			}
-			.search {
-				display: flex;
-				align-items: center;
-				gap: 8px;
-				padding: 10px 12px;
-				background: var(--surface);
-				border: 1px solid rgba(255, 255, 255, 0.12);
-				border-radius: 999px;
-				box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
-				height: 40px;
-				box-sizing: border-box;
-			}
-			.search input {
-				flex: 1;
-				background: transparent;
-				border: 0;
-				outline: 0;
-				color: var(--text);
-				font-size: 16px;
-				padding: 4px;
-				min-width: 0;
-			}
-			.search input::placeholder {
-				color: #9fb0b2;
-			}
+    .controls {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 12px;
+        align-items: center;
+    }
+    .search {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 12px;
+        background: var(--surface);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 999px;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+        height: 40px;
+        box-sizing: border-box;
+    }
+    .search input {
+        flex: 1;
+        background: transparent;
+        border: 0;
+        outline: 0;
+        color: var(--text);
+        font-size: 16px;
+        padding: 4px;
+        min-width: 0;
+    }
+    .search input::placeholder {
+        color: #9fb0b2;
+    }
 
-			.tags {
-				display: flex;
-				flex-wrap: wrap;
-				gap: 8px;
-				margin-top: 10px;
-			}
-			.tag {
-				position: relative;
-				background: rgba(255, 255, 255, 0.08);
-				border: 1px solid rgba(124, 247, 212, 0.35);
-				backdrop-filter: blur(10px);
-				border-radius: 999px;
-				padding: 8px 12px;
-				cursor: pointer;
-				transition: background 0.3s ease, box-shadow 0.3s ease;
-				color: #c7fff0;
-				font-weight: 600;
-			}
-			.tag:hover {
-				background: rgba(124, 247, 212, 0.12);
-				box-shadow: 0 0 12px rgba(124, 247, 212, 0.6),
-					inset 0 0 6px rgba(124, 247, 212, 0.4);
-			}
-			.tag::before {
-				content: "";
-				position: absolute;
-				inset: 0;
-				border-radius: 999px;
-				background: linear-gradient(
-					120deg,
-					rgba(255, 255, 255, 0.2),
-					transparent,
-					rgba(255, 255, 255, 0.2)
-				);
-				opacity: 0;
-				transition: opacity 0.4s ease, transform 0.4s ease;
-				transform: scale(0.8);
-				pointer-events: none;
-			}
-			.tag:hover::before {
-				opacity: 1;
-				transform: scale(1.05);
-			}
-			.tag[data-active="true"] {
-				background: var(--accent);
-				color: #0b0c10;
-				border-color: var(--accent-2);
-				box-shadow: 0 0 14px rgba(124, 247, 212, 0.8);
-			}
-			.tag input {
-				appearance: none;
-				width: 16px;
-				height: 16px;
-				border-radius: 5px;
-				outline: none;
-				display: none;
-			}
+    .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 10px;
+    }
+    .tag {
+        position: relative;
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(124, 247, 212, 0.35);
+        backdrop-filter: blur(10px);
+        border-radius: 999px;
+        padding: 8px 12px;
+        cursor: pointer;
+        transition: background 0.3s ease, box-shadow 0.3s ease;
+        color: #c7fff0;
+        font-weight: 600;
+    }
+    .tag:hover {
+        background: rgba(124, 247, 212, 0.12);
+        box-shadow: 0 0 12px rgba(124, 247, 212, 0.6),
+            inset 0 0 6px rgba(124, 247, 212, 0.4);
+    }
+    .tag::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: 999px;
+        background: linear-gradient(
+            120deg,
+            rgba(255, 255, 255, 0.2),
+            transparent,
+            rgba(255, 255, 255, 0.2)
+        );
+        opacity: 0;
+        transition: opacity 0.4s ease, transform 0.4s ease;
+        transform: scale(0.8);
+        pointer-events: none;
+    }
+    .tag:hover::before {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+    .tag[data-active="true"] {
+        background: var(--accent);
+        color: #0b0c10;
+        border-color: var(--accent-2);
+        box-shadow: 0 0 14px rgba(124, 247, 212, 0.8);
+    }
+    .tag input {
+        appearance: none;
+        width: 16px;
+        height: 16px;
+        border-radius: 5px;
+        outline: none;
+        display: none;
+    }
 
-			.select {
-				position: relative;
-				display: flex;
-				gap: 8px;
-				align-items: center;
-				background: rgba(255, 255, 255, 0.12);
-				border: 1px solid rgba(255, 255, 255, 0.2);
-				border-radius: 999px;
-				padding: 0 12px;
-				height: 40px;
-				box-sizing: border-box;
-				backdrop-filter: blur(var(--blur));
-				cursor: pointer;
-				min-width: 140px;
-			}
-			
-			.select select {
-				display: none;
-			}
-			
-			.select-value {
-				font-weight: 600;
-				color: var(--text);
-				white-space: nowrap;
-			}
-			
-			.select-arrow {
-				width: 16px;
-				height: 16px;
-				transition: transform 0.3s ease;
-			}
-			
-			.select.open .select-arrow {
-				transform: rotate(180deg);
-			}
-			
-			.select-options {
-				position: absolute;
-				top: calc(100% + 8px);
-				left: 0;
-				width: 100%;
-				background: linear-gradient(
-					180deg,
-					rgba(40, 45, 60, 0.95),
-					rgba(30, 35, 50, 0.95)
-				);
-				backdrop-filter: blur(20px);
-				border: 1px solid rgba(255, 255, 255, 0.25);
-				border-radius: var(--radius-lg);
-				box-shadow: var(--shadow);
-				padding: 8px 0;
-				margin: 0;
-				list-style: none;
-				opacity: 0;
-				visibility: hidden;
-				transform: translateY(-10px);
-				transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
-				z-index: 10;
-				max-height: 300px;
-				overflow-y: auto;
-			}
-			
-			.select.open .select-options {
-				opacity: 1;
-				visibility: visible;
-				transform: translateY(0);
-			}
-			
-			.select-option {
-				padding: 10px 16px;
-				color: var(--text);
-				cursor: pointer;
-				transition: background 0.2s ease;
-			}
-			
-			.select-option:hover {
-				background: rgba(124, 247, 212, 0.25);
-			}
-			
-			.select-option[data-selected="true"] {
-				background: rgba(124, 247, 212, 0.35);
-				color: var(--accent);
-			}
+    .select {
+        position: relative;
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        background: rgba(255, 255, 255, 0.12);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 999px;
+        padding: 0 12px;
+        height: 40px;
+        box-sizing: border-box;
+        backdrop-filter: blur(var(--blur));
+        cursor: pointer;
+        min-width: 140px;
+    }
 
-			.card {
-				background: linear-gradient(
-					180deg,
-					rgba(255, 255, 255, 0.06),
-					rgba(255, 255, 255, 0.03)
-				);
-				border: 1px solid rgba(255, 255, 255, 0.12);
-				border-radius: var(--radius-lg);
-				overflow: hidden;
-				box-shadow: var(--shadow);
-			}
+    .select select {
+        display: none;
+    }
 
-			table {
-				width: 100%;
-				border-collapse: collapse;
-				font-size: 15px;
-			}
-			caption {
-				text-align: left;
-				padding: 14px 16px;
-				color: var(--muted);
-				font-size: 13px;
-			}
-			thead th {
-				position: sticky;
-				top: 0;
-				backdrop-filter: blur(var(--blur));
-				background: linear-gradient(
-					180deg,
-					rgba(0, 0, 0, 0.35),
-					rgba(0, 0, 0, 0.15)
-				);
-				font-size: 12.5px;
-				text-transform: uppercase;
-				letter-spacing: 0.08em;
-				color: #cdd7d9;
-				border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-				padding: 12px 14px;
-				text-align: left;
-				font-weight: 800;
-			}
-			tbody tr {
-				transition: transform 0.2s ease, background 0.2s ease,
-					box-shadow 0.2s ease;
-				cursor: pointer;
-			}
-			tbody tr:hover {
-				transform: translateY(-1px);
-				background: rgba(255, 255, 255, 0.04);
-				box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
-			}
-			td {
-				padding: 13px 14px;
-				border-bottom: 1px dashed rgba(255, 255, 255, 0.12);
-				vertical-align: top;
-			}
+    .select-value {
+        font-weight: 600;
+        color: var(--text);
+        white-space: nowrap;
+    }
 
-			.cmd {
-				font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-					"Liberation Mono", "DejaVu Sans Mono", monospace;
-				font-weight: 700;
-			}
-			.flags,
-			.example {
-				font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-					"Liberation Mono", "DejaVu Sans Mono", monospace;
-				color: #d7f9ff;
-			}
+    .select-arrow {
+        width: 16px;
+        height: 16px;
+        transition: transform 0.3s ease;
+    }
 
-			.toast {
-				position: fixed;
-				left: 50%;
-				bottom: 24px;
-				transform: translateX(-50%) translateY(20px);
-				background: var(--accent);
-				border: 1px solid var(--accent-2);
-				color: #0b0c10;
-				padding: 12px 18px;
-				border-radius: 999px;
-				box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
-				opacity: 0;
-				pointer-events: none;
-				transition: opacity 0.35s ease, transform 0.35s ease;
-				font-weight: 600;
-				z-index: 100;
-			}
-			.toast.show {
-				opacity: 1;
-				transform: translateX(-50%) translateY(0);
-			}
+    .select.open .select-arrow {
+        transform: rotate(180deg);
+    }
 
-			@media (prefers-reduced-motion: reduce) {
-				* {
-					animation: none !important;
-					transition: none !important;
-				}
-				.background {
-					animation: none;
-				}
-			}
-			@media (prefers-reduced-data: reduce) {
-				.background {
-					display: none;
-				}
-				body {
-					background: var(--bg);
-				}
-			}
+    .select-options {
+        position: absolute;
+        top: calc(100% + 8px);
+        left: 0;
+        width: 100%;
+        background: linear-gradient(
+            180deg,
+            rgba(40, 45, 60, 0.95),
+            rgba(30, 35, 50, 0.95)
+        );
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow);
+        padding: 8px 0;
+        margin: 0;
+        list-style: none;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-10px);
+        transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+        z-index: 10;
+        max-height: 300px;
+        overflow-y: auto;
+    }
 
-			@media (max-width: 720px) {
-				.controls {
-					grid-template-columns: 1fr;
-				}
-				.select {
-					width: 100%;
-				}
-				.select-options {
-					width: 100%;
-					left: 0;
-				}
-				thead th:nth-child(3),
-				td:nth-child(3) {
-					display: none;
-				}
-			}
+    .select.open .select-options {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+
+    .select-option {
+        padding: 10px 16px;
+        color: var(--text);
+        cursor: pointer;
+        transition: background 0.2s ease;
+    }
+
+    .select-option:hover {
+        background: rgba(124, 247, 212, 0.25);
+    }
+
+    .select-option[data-selected="true"] {
+        background: rgba(124, 247, 212, 0.35);
+        color: var(--accent);
+    }
+
+    .card {
+        background: linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 0.06),
+            rgba(255, 255, 255, 0.03)
+        );
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        box-shadow: var(--shadow);
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 15px;
+    }
+    caption {
+        text-align: left;
+        padding: 14px 16px;
+        color: var(--muted);
+        font-size: 13px;
+    }
+    thead th {
+        position: sticky;
+        top: 0;
+        backdrop-filter: blur(var(--blur));
+        background: linear-gradient(
+            180deg,
+            rgba(0, 0, 0, 0.35),
+            rgba(0, 0, 0, 0.15)
+        );
+        font-size: 12.5px;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: #cdd7d9;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+        padding: 12px 14px;
+        text-align: left;
+        font-weight: 800;
+    }
+    tbody tr {
+        transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+        cursor: pointer;
+    }
+    tbody tr:hover {
+        transform: translateY(-1px);
+        background: rgba(255, 255, 255, 0.04);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    }
+    td {
+        padding: 13px 14px;
+        border-bottom: 1px dashed rgba(255, 255, 255, 0.12);
+        vertical-align: top;
+    }
+
+    .cmd {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "DejaVu Sans Mono", monospace;
+        font-weight: 700;
+    }
+    .flags,
+    .example {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "DejaVu Sans Mono", monospace;
+        color: #d7f9ff;
+    }
+
+    /* --- REEMPLAZA las reglas antiguas de placeholders por este bloque --- */
+
+    /* estilo base "plástico" para todas las etiquetas entre {} */
+    .cmd .placeholder {
+        display: inline-block;
+        padding: 2px 8px;
+        border-radius: 10px;
+        font-weight: 800;
+        font-size: 0.95em;
+        line-height: 1;
+        transform-origin: center;
+        box-shadow: 0 6px 14px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.12);
+        border: 1px solid rgba(255,255,255,0.08);
+        text-shadow: 0 1px 0 rgba(255,255,255,0.08);
+        transition: transform 160ms ease, box-shadow 260ms ease;
+        vertical-align: middle;
+        margin: 0 2px;
+        -webkit-font-smoothing: subpixel-antialiased;
+        position: relative;
+    }
+
+    /* brillo/plástico: una línea de brillo sutil */
+    .cmd .placeholder::after{
+        content: "";
+        position: absolute;
+        pointer-events: none;
+        display: block;
+        left: 6%;
+        top: 8%;
+        width: 60%;
+        height: 24%;
+        border-radius: 8px;
+        background: linear-gradient(180deg, rgba(255,255,255,0.55), rgba(255,255,255,0.06));
+        opacity: 0.22;
+        transform: rotate(-10deg) translateZ(0);
+    }
+
+    /* animación sutil de brillo externo */
+    @keyframes placeholderGlow {
+        0% { box-shadow: 0 6px 12px rgba(0,0,0,0.45), 0 0 0 rgba(0,0,0,0); }
+        50% { box-shadow: 0 10px 28px rgba(0,0,0,0.55), 0 0 8px rgba(0,0,0,0.04); }
+        100% { box-shadow: 0 6px 12px rgba(0,0,0,0.45), 0 0 0 rgba(0,0,0,0); }
+    }
+
+    /* COLORES solicitados: {ip} rosado; {file} aqua; {dir} verde; {string} deja un tono contrastante */
+    .cmd .ip {
+        color: white;
+        background: linear-gradient(180deg, rgba(255,111,185,0.26), rgba(255,111,185,0.10));
+        border-color: rgba(255,111,185,0.28);
+        text-shadow: 0 2px 8px rgba(255,111,185,0.14);
+        animation: placeholderGlow 4.5s ease-in-out infinite;
+        position: relative;
+    }
+
+    /* aqua contrastante */
+    .cmd .file {
+        color: #04242a;
+        background: linear-gradient(180deg, rgba(94,224,255,0.95), rgba(94,224,255,0.16));
+        border-color: rgba(94,224,255,0.35);
+        text-shadow: 0 2px 8px rgba(94,224,255,0.10);
+        animation: placeholderGlow 5s ease-in-out infinite;
+        position: relative;
+    }
+
+    /* {dir} (reemplazo de folder) en verde contrastante */
+    .cmd .dir {
+        color: #04240a;
+        background: linear-gradient(180deg, rgba(107,255,176,0.95), rgba(107,255,176,0.12));
+        border-color: rgba(107,255,176,0.28);
+        text-shadow: 0 2px 8px rgba(107,255,176,0.10);
+        animation: placeholderGlow 5s ease-in-out infinite;
+        position: relative;
+    }
+
+    /* compatibilidad: si aún hay .folder, que responda igual que .dir */
+    .cmd .folder {
+        color: #04240a;
+        background: linear-gradient(180deg, rgba(107,255,176,0.95), rgba(107,255,176,0.12));
+        border-color: rgba(107,255,176,0.28);
+        text-shadow: 0 2px 8px rgba(107,255,176,0.10);
+        animation: placeholderGlow 5s ease-in-out infinite;
+        position: relative;
+    }
+
+    /* string - deja un rosa pálido (si lo usas) */
+    .cmd .string {
+        color: #2b0a10;
+        background: linear-gradient(180deg, rgba(245,169,184,0.95), rgba(245,169,184,0.12));
+        border-color: rgba(245,169,184,0.22);
+        text-shadow: 0 1px 6px rgba(245,169,184,0.08);
+        position: relative;
+    }
+
+    /* "Comando inicial" en dorado solo al inicio de la cadena */
+    .cmd .cmd-name {
+        color: #d4af37; /* dorado */
+        font-weight: 900;
+        letter-spacing: 0.4px;
+        text-shadow: 0 2px 6px rgba(212,175,55,0.18), 0 6px 18px rgba(0,0,0,0.5);
+        padding-right: 6px;
+        display: inline-block;
+        transform-origin: center left;
+        transition: transform 180ms ease, text-shadow 220ms ease;
+    }
+
+    /* interacción */
+    .cmd .cmd-name:hover {
+        transform: translateY(-2px) scale(1.02);
+        text-shadow: 0 3px 10px rgba(212,175,55,0.28);
+    }
+
+    /* Asegura que los placeholders mantengan buen espaciado en móviles */
+    @media (max-width:720px){
+        .cmd .placeholder { padding: 2px 6px; border-radius: 8px; }
+        .cmd .cmd-name { padding-right: 4px; }
+    }
+
+    /* --- NUEVO: tokens de flags --- */
+    .flags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        align-items: center;
+    }
+
+    /* cada flag es un "cuadradito redondeado" */
+    .flag {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 36px;
+        height: 28px;
+        padding: 0 8px;
+        border-radius: 8px;
+        font-weight: 800;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+            monospace;
+        color: var(--accent);
+        background: rgba(124, 247, 212, 0.06); /* mismo tono para todos */
+        border: 1px solid rgba(124, 247, 212, 0.18);
+        box-shadow: 0 8px 18px rgba(0, 0, 0, 0.55),
+            inset 0 1px 0 rgba(255, 255, 255, 0.04);
+        cursor: default;
+        user-select: none;
+        transition: transform 0.12s ease, box-shadow 0.12s ease;
+    }
+    .flag:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6),
+            inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    }
+
+    /* tooltip (estilo "vidrio" consistente con el panel) */
+    .flag::after {
+        content: attr(data-tip);
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%, -6px) scale(0.98);
+        bottom: calc(100% + 10px);
+        white-space: pre-wrap;
+        min-width: 180px;
+        max-width: 360px;
+        background: linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 0.04),
+            rgba(255, 255, 255, 0.02)
+        );
+        color: var(--text);
+        padding: 10px 12px;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(var(--blur));
+        box-shadow: 0 12px 36px rgba(0, 0, 0, 0.6);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.16s ease, transform 0.16s ease;
+        z-index: 50;
+        text-align: left;
+        font-size: 13px;
+        line-height: 1.3;
+    }
+    /* pequeño triángulo debajo del tooltip para conectar visualmente */
+    .flag::before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        bottom: calc(100% + 6px);
+        transform: translateX(-50%) rotate(45deg) scale(0.85);
+        width: 12px;
+        height: 12px;
+        background: linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 0.04),
+            rgba(255, 255, 255, 0.02)
+        );
+        border-left: 1px solid rgba(255, 255, 255, 0.06);
+        border-top: 1px solid rgba(255, 255, 255, 0.06);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.16s ease, transform 0.16s ease;
+        z-index: 49;
+    }
+
+    .flag:hover::after,
+    .flag:focus::after,
+    .flag:hover::before,
+    .flag:focus::before {
+        opacity: 1;
+        transform: translate(-50%, -12px) scale(1);
+    }
+
+    /* focus accesible (keyboard) */
+    .flag:focus {
+        outline: none;
+        box-shadow: 0 0 0 3px var(--ring);
+        transform: translateY(-3px);
+    }
+
+    .toast {
+        position: fixed;
+        left: 50%;
+        bottom: 24px;
+        transform: translateX(-50%) translateY(20px);
+        background: var(--accent);
+        border: 1px solid var(--accent-2);
+        color: #0b0c10;
+        padding: 12px 18px;
+        border-radius: 999px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.35s ease, transform 0.35s ease;
+        font-weight: 600;
+        z-index: 100;
+    }
+    .toast.show {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        * {
+            animation: none !important;
+            transition: none !important;
+        }
+        .background {
+            animation: none;
+        }
+    }
+    @media (prefers-reduced-data: reduce) {
+        .background {
+            display: none;
+        }
+        body {
+            background: var(--bg);
+        }
+    }
+
+    @media (max-width: 720px) {
+        .controls {
+            grid-template-columns: 1fr;
+        }
+        .select {
+            width: 100%;
+        }
+        .select-options {
+            width: 100%;
+            left: 0;
+        }
+        thead th:nth-child(3),
+        td:nth-child(3) {
+            display: none;
+        }
+    }
+
 		</style>
 	</head>
 	<body>
@@ -502,7 +718,7 @@
 						<tr>
 							<th scope="col">Command</th>
 							<th scope="col">Description</th>
-							<th scope="col">Main Flags</th>
+							<th scope="col">Flags</th>
 							<th scope="col">Example</th>
 						</tr>
 					</thead>
@@ -516,104 +732,191 @@
 		</div>
 
 		<script>
+			/* Helper para escapar texto dentro de atributos */
+			function escapeAttr(s = "") {
+				return String(s)
+					.replaceAll("&", "&amp;")
+					.replaceAll('"', "&quot;")
+					.replaceAll("'", "&#39;")
+					.replaceAll("<", "&lt;")
+					.replaceAll(">", "&gt;");
+			}
+
+			/* --- REEMPLAZA la función formatCommand existente por esta versión --- */
+        function formatCommand(cmd) {
+        if (!cmd) return "";
+
+        // Acepta tanto {folder} como {dir} en el input, pero normaliza a {dir}
+        let s = cmd.replace(/\{folder\}/g, "{dir}");
+
+        // Primero reemplazamos los placeholders por spans con clases (manteniendo llaves visibles)
+        s = s
+            .replace(/\{ip\}/g, '<span class="placeholder ip">{ip}</span>')
+            .replace(/\{file\}/g, '<span class="placeholder file">{file}</span>')
+            .replace(/\{dir\}/g, '<span class="placeholder dir">{dir}</span>')
+            .replace(/\{string\}/g, '<span class="placeholder string">{string}</span>');
+
+        // Luego, envolvemos únicamente la primera palabra (el nombre del comando al inicio)
+        // con la clase .cmd-name para que quede en dorado.
+        // Usamos una función para no interferir con spans ya insertados.
+        s = s.replace(/^(\s*)([^\s<]+)/, function (match, leading, firstToken) {
+            // si el primer token ya es un span (raro), no lo reempaquetamos
+            if (/^<span/.test(firstToken)) return match;
+            return leading + '<span class="cmd-name">' + firstToken + '</span>';
+        });
+
+        return s;
+        }
+
 			const COMMANDS = [
 				{
-					cmd: "pwd",
-					desc: "Print current working directory",
-					flags: "-L (logical), -P (physical)",
-					example: "pwd -P",
-					tags: ["files", "basics"],
-				},
-				{
-					cmd: "touch",
-					desc: "Create empty file or update timestamp",
-					flags: "-a (atime), -m (mtime)",
-					example: "touch newfile.txt",
-					tags: ["files", "basics"],
-				},
-				{
-					cmd: "man",
-					desc: "Show manual/help for commands",
-					flags: "-k (search), -f (whatis)",
-					example: "man ls",
-					tags: ["basics", "help"],
-				},
-				{
-					cmd: "ssh",
-					desc: "Secure shell remote login",
-					flags: "-i (identity), -p (port), -L (port forward)",
-					example: "ssh -i ~/.ssh/id_rsa user@host",
-					tags: ["network", "system"],
-				},
-				{
-					cmd: "ping",
-					desc: "Check network connectivity",
-					flags: "-c (count), -i (interval)",
-					example: "ping -c 4 example.com",
+					cmd: "ssh {ip}",
+					desc: "Connect to a remote server",
+					flags: [
+						{flag: "-p", desc: "Specify port number", example: "ssh -p 2222 user@host"},
+						{flag: "-i", desc: "Identity file for authentication", example: "ssh -i key.pem user@host"},
+						{flag: "-l", desc: "Specify login name", example: "ssh -l username host"}
+					],
+					example: "ssh -i ~/.ssh/key.pem user@192.168.1.1",
 					tags: ["network"],
 				},
 				{
-					cmd: "df",
-					desc: "Report disk space usage",
-					flags: "-h (human-readable), -T (type)",
-					example: "df -hT",
+					cmd: "pbrun su",
+					desc: "Become root user",
+					flags: [
+						{flag: "-u", desc: "Switch to specified user", example: "pbrun su -u username"},
+						{flag: "-l", desc: "List available commands", example: "pbrun su -l"}
+					],
+					example: "pbrun su",
 					tags: ["system"],
 				},
 				{
-					cmd: "du",
-					desc: "Estimate file/directory sizes",
-					flags: "-h (human-readable), -s (summary)",
-					example: "du -sh *",
-					tags: ["files", "system"],
+					cmd: "bash",
+					desc: "Open a Bash shell",
+					flags: [
+						{flag: "-c", desc: "Execute command string", example: "bash -c 'echo hello'"},
+						{flag: "-l", desc: "Make bash act as login shell", example: "bash -l"}
+					],
+					example: "bash",
+					tags: ["system"],
 				},
 				{
-					cmd: "grep",
-					desc: "Search text using patterns",
-					flags: "-i (ignore case), -r (recursive), -n (line numbers)",
-					example: 'grep -rin "error" /var/log',
-					tags: ["text", "search"],
+					cmd: "ls",
+					desc: "List files",
+					flags: [
+						{flag: "-l", desc: "Use long listing format", example: "ls -l"},
+						{flag: "-t", desc: "Sort by modification time", example: "ls -t"},
+						{flag: "-r", desc: "Reverse order while sorting", example: "ls -r"},
+                        {flag: "-1", desc: "List one file per line", example: "ls -1"},
+						{flag: "--sort", desc: "Sort by size, time, version, etc.", example: "ls --sort=size"}
+					],
+					example: "ls -ltr --sort=size",
+					tags: ["files"],
 				},
 				{
-					cmd: "chmod",
-					desc: "Change file permissions",
-					flags: "+rwx, -rwx, -R",
-					example: "chmod -R 755 ./public",
-					tags: ["system", "files"],
+					cmd: "rm *",
+					desc: "Force delete all files in current directory",
+					flags: [
+						{flag: "-f", desc: "Force removal without confirmation", example: "rm -f file.txt"},
+						{flag: "-r", desc: "Remove directories recursively", example: "rm -r directory"},
+						{flag: "-i", desc: "Interactive removal prompt", example: "rm -i file.txt"}
+					],
+					example: "rm -f *",
+					tags: ["files"],
 				},
 				{
-					cmd: "kill",
-					desc: "Terminate a process by PID",
-					flags: "-9 (force), -SIGTERM",
-					example: "kill -9 1234",
-					tags: ["processes", "system"],
+					cmd: "cp {file} {dir}",
+					desc: "Copy file to directory",
+					flags: [
+						{flag: "-r", desc: "Copy directories recursively", example: "cp -r dir1 dir2"},
+						{flag: "-i", desc: "Prompt before overwrite", example: "cp -i file1 file2"},
+						{flag: "-v", desc: "Verbose output", example: "cp -v file1 file2"}
+					],
+					example: "cp document.txt /backup/",
+					tags: ["files"],
 				},
 				{
-					cmd: "top",
-					desc: "Display dynamic real-time process info",
-					flags: "-d (delay), -u (user)",
-					example: "top -u root",
-					tags: ["processes"],
+					cmd: "mv {file} {dir}",
+					desc: "Move file to directory",
+					flags: [
+						{flag: "-i", desc: "Prompt before overwrite", example: "mv -i file1 file2"},
+						{flag: "-v", desc: "Verbose output", example: "mv -v file1 file2"},
+						{flag: "-n", desc: "Do not overwrite existing file", example: "mv -n file1 file2"}
+					],
+					example: "mv photo.jpg /images/",
+					tags: ["files"],
 				},
 				{
-					cmd: "tail",
-					desc: "Output last part of files or piped data",
-					flags: "-n (lines), -f (follow)",
-					example: "tail -f /var/log/syslog",
-					tags: ["text", "logs"],
+					cmd: "df {dir}",
+					desc: "Show disk space usage in human-readable format",
+					flags: [
+						{flag: "-h", desc: "Human-readable sizes (e.g., 1K, 234M, 2G)", example: "df -h"},
+						{flag: "-T", desc: "Display file system type", example: "df -T"},
+						{flag: "-i", desc: "Show inode information", example: "df -i"}
+					],
+					example: "df -h /home/",
+					tags: ["system"],
 				},
 				{
-					cmd: "lsof",
-					desc: "List open files and the processes using them",
-					flags: "-i (network), -u (user)",
-					example: "lsof -i -n -P | grep ssh",
-					tags: ["system", "network"],
+					cmd: "cat {file}",
+					desc: "Display file contents",
+					flags: [
+						{flag: "-n", desc: "Number all output lines", example: "cat -n file.txt"},
+						{flag: "-b", desc: "Number non-empty output lines", example: "cat -b file.txt"},
+						{flag: "-s", desc: "Squeeze multiple adjacent empty lines", example: "cat -s file.txt"}
+					],
+					example: "cat config.txt",
+					tags: ["files", "text"],
 				},
 				{
-					cmd: "uniq",
-					desc: "Filter adjacent matching lines",
-					flags: "-c (count), -d (duplicates only)",
-					example: "sort file.txt | uniq -c",
-					tags: ["text", "filter"],
+					cmd: "gzip {file}",
+					desc: "Compress file using gzip",
+					flags: [
+						{flag: "-k", desc: "Keep original file", example: "gzip -k file.txt"},
+						{flag: "-v", desc: "Verbose mode", example: "gzip -v file.txt"},
+						{flag: "-d", desc: "Decompress", example: "gzip -d file.txt.gz"}
+					],
+					example: "gzip largefile.log",
+					tags: ["files", "archive"],
+				},
+				{
+					cmd: "hostname",
+					desc: "Show system hostname",
+					flags: [
+						{flag: "-I", desc: "Display all network addresses", example: "hostname -I"},
+						{flag: "-f", desc: "Display FQDN (Fully Qualified Domain Name)", example: "hostname -f"},
+						{flag: "-d", desc: "Display DNS domain name", example: "hostname -d"}
+					],
+					example: "hostname",
+					tags: ["system"],
+				},
+				{
+					cmd: "pwd",
+					desc: "Print working directory",
+					flags: [
+						{flag: "-L", desc: "Print logical current directory", example: "pwd -L"},
+						{flag: "-P", desc: "Print physical directory without symlinks", example: "pwd -P"}
+					],
+					example: "pwd",
+					tags: ["files", "basics"],
+				},
+				{
+					cmd: "exit",
+					desc: "Close current session",
+					flags: [],
+					example: "exit",
+					tags: ["system"],
+				},
+				{
+					cmd: "less {file}",
+					desc: "View file with pagination",
+					flags: [
+						{flag: "-N", desc: "Show line numbers", example: "less -N file.txt"},
+						{flag: "-i", desc: "Ignore case in searches", example: "less -i file.txt"},
+						{flag: "-S", desc: "Chop long lines instead of wrapping", example: "less -S file.txt"}
+					],
+					example: "less longfile.txt",
+					tags: ["files", "text"],
 				},
 			];
 
@@ -662,8 +965,21 @@
 				clearTimeout(toastTimer);
 				toastTimer = setTimeout(() => toast.classList.remove("show"), 1600);
 			}
+
+			/* Nuevo: función para renderizar flags con tooltips */
+			function flagsTemplate(flags) {
+				if (!flags || flags.length === 0) {
+					return '<span class="flag" data-tip="No flags"></span>';
+				}
+				
+				return flags.map(f => {
+					const tip = `${f.desc}\nExample: ${f.example}`;
+					return `<span class="flag" tabindex="0" role="button" data-tip="${escapeAttr(tip)}" aria-label="Flag info">${escapeAttr(f.flag)}</span>`;
+				}).join('');
+			}
+
 			function rowTemplate(c) {
-				const flags = c.flags && c.flags !== "-" ? c.flags : "";
+				const flagsCell = flagsTemplate(c.flags);
 				return `
       <tr data-tags="${c.tags.join(",")}" data-cat="${
 					c.tags.find(t =>
@@ -678,11 +994,11 @@
 					) || "other"
 				}">
         <td>
-          <span class="cmd">${c.cmd}</span>
+          <span class="cmd">${formatCommand(c.cmd)}</span>
         </td>
         <td>${c.desc}</td>
-        <td class="flags">${flags}</td>
-        <td class="example">${c.example}</td>
+        <td class="flags">${flagsCell}</td>
+        <td class="example">${formatCommand(c.example)}</td>
       </tr>`;
 			}
 			function renderRows(list) {
@@ -703,7 +1019,7 @@
 						" " +
 						c.desc +
 						" " +
-						c.flags +
+						c.flags.map(f => f.flag + " " + f.desc).join(" ") +
 						" " +
 						c.example
 					).toLowerCase();
