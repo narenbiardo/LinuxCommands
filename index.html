@@ -22,8 +22,8 @@
         --radius-lg: 16px;
         --radius-xl: 22px;
         --blur: 10px;
-        --glass-bg: rgba(124, 247, 212, 0.12); /* Aumentada opacidad para mejor legibilidad */
-        --glass-border: rgba(124, 247, 212, 0.25); /* Borde más visible */
+        --glass-bg: rgba(124, 247, 212, 0.12);
+        --glass-border: rgba(124, 247, 212, 0.25);
     }
 
     html,
@@ -92,10 +92,10 @@
 
     header {
         display: flex;
-        align-items: center;
+        align-items: flex-end;
         justify-content: space-between;
-        gap: 16px;
         margin-bottom: 20px;
+        position: relative;
     }
     .title {
         font-weight: 800;
@@ -108,11 +108,59 @@
         background-clip: text;
         color: transparent;
         filter: drop-shadow(0 6px 18px rgba(124, 247, 212, 0.12));
+        display: inline-block;
     }
     .subtitle {
         margin: 6px 0 0;
         color: var(--muted);
         font-size: clamp(12px, 1.8vw, 14.5px);
+    }
+
+    /* GitHub link styles - REDISEÑADO */
+    .github-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        text-decoration: none;
+        color: var(--muted);
+        transition: all 0.3s ease;
+        padding: 4px 10px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(var(--blur));
+        margin-left: 12px;
+        transform: translateY(-4px);
+        position: relative;
+        font-size: 13px;
+        line-height: 1;
+        vertical-align: super;
+    }
+
+    .github-link:hover {
+        color: var(--accent);
+        background: rgba(124, 247, 212, 0.08);
+        border-color: rgba(124, 247, 212, 0.2);
+        box-shadow: 0 0 12px rgba(124, 247, 212, 0.15);
+        transform: translateY(-4px) scale(1.05);
+    }
+
+    .github-link span {
+        font-size: 13px;
+        font-weight: 600;
+    }
+
+    .github-icon {
+        width: 16px;
+        height: 16px;
+        fill: currentColor;
+        flex-shrink: 0;
+    }
+
+    .title-container {
+        display: flex;
+        align-items: flex-end;
+        flex-wrap: wrap;
     }
 
     .panel {
@@ -263,9 +311,9 @@
         top: calc(100% + 8px);
         left: 0;
         width: 100%;
-        background: var(--glass-bg); /* Color consistente con mejor opacidad */
+        background: var(--glass-bg);
         backdrop-filter: blur(20px);
-        border: 1px solid var(--glass-border); /* Borde consistente */
+        border: 1px solid var(--glass-border);
         border-radius: var(--radius-lg);
         box-shadow: var(--shadow);
         padding: 8px 0;
@@ -368,9 +416,6 @@
         color: #d7f9ff;
     }
 
-    /* --- REEMPLAZA las reglas antiguas de placeholders por este bloque --- */
-
-    /* estilo base "plástico" para todas las etiquetas entre {} */
     .cmd .placeholder, .use-command .placeholder {
         display: inline-block;
         padding: 2px 8px;
@@ -389,7 +434,6 @@
         position: relative;
     }
 
-    /* brillo/plástico: una línea de brillo sutil */
     .cmd .placeholder::after, .use-command .placeholder::after {
         content: "";
         position: absolute;
@@ -405,14 +449,12 @@
         transform: rotate(-10deg) translateZ(0);
     }
 
-    /* animación sutil de brillo externo */
     @keyframes placeholderGlow {
         0% { box-shadow: 0 6px 12px rgba(0,0,0,0.45), 0 0 0 rgba(0,0,0,0); }
         50% { box-shadow: 0 10px 28px rgba(0,0,0,0.55), 0 0 8px rgba(0,0,0,0.04); }
         100% { box-shadow: 0 6px 12px rgba(0,0,0,0.45), 0 0 0 rgba(0,0,0,0); }
     }
 
-    /* COLORES solicitados: {ip} rosado; {file} aqua; {dir} verde; {string} deja un tono contrastante */
     .cmd .ip, .use-command .ip {
         color: white;
         background: linear-gradient(180deg, rgba(255,111,185,0.26), rgba(255,111,185,0.10));
@@ -422,7 +464,6 @@
         position: relative;
     }
 
-    /* aqua contrastante */
     .cmd .file, .use-command .file {
         color: #04242a;
         background: linear-gradient(180deg, rgba(94,224,255,0.95), rgba(94,224,255,0.16));
@@ -432,7 +473,6 @@
         position: relative;
     }
 
-    /* {dir} (reemplazo de folder) en verde contrastante */
     .cmd .dir, .use-command .dir {
         color: #04240a;
         background: linear-gradient(180deg, rgba(107,255,176,0.95), rgba(107,255,176,0.12));
@@ -442,7 +482,6 @@
         position: relative;
     }
 
-    /* compatibilidad: si aún hay .folder, que responda igual que .dir */
     .cmd .folder, .use-command .folder {
         color: #04240a;
         background: linear-gradient(180deg, rgba(107,255,176,0.95), rgba(107,255,176,0.12));
@@ -452,7 +491,6 @@
         position: relative;
     }
 
-    /* string - deja un rosa pálido (si lo usas) */
     .cmd .string, .use-command .string {
         color: #2b0a10;
         background: linear-gradient(180deg, rgba(245,169,184,0.95), rgba(245,169,184,0.12));
@@ -461,9 +499,8 @@
         position: relative;
     }
 
-    /* "Comando inicial" en dorado solo al inicio de la cadena */
     .cmd .cmd-name, .use-command .cmd-name {
-        color: #d4af37; /* dorado */
+        color: #d4af37;
         font-weight: 900;
         letter-spacing: 0.4px;
         text-shadow: 0 2px 6px rgba(212,175,55,0.18), 0 6px 18px rgba(0,0,0,0.5);
@@ -473,19 +510,16 @@
         transition: transform 180ms ease, text-shadow 220ms ease;
     }
 
-    /* interacción */
     .cmd .cmd-name:hover, .use-command .cmd-name:hover {
         transform: translateY(-2px) scale(1.02);
         text-shadow: 0 3px 10px rgba(212,175,55,0.28);
     }
 
-    /* Asegura que los placeholders mantengan buen espaciado en móviles */
     @media (max-width:720px){
         .cmd .placeholder, .use-command .placeholder { padding: 2px 6px; border-radius: 8px; }
         .cmd .cmd-name, .use-command .cmd-name { padding-right: 4px; }
     }
 
-    /* --- NUEVO: tokens de flags --- */
     .flags {
         display: flex;
         flex-wrap: wrap;
@@ -493,7 +527,6 @@
         align-items: center;
     }
 
-    /* cada flag es un "cuadradito redondeado" */
     .flag {
         position: relative;
         display: inline-flex;
@@ -507,8 +540,8 @@
         font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
             monospace;
         color: var(--accent);
-        background: var(--glass-bg); /* Color consistente */
-        border: 1px solid var(--glass-border); /* Borde consistente */
+        background: var(--glass-bg);
+        border: 1px solid var(--glass-border);
         box-shadow: 0 8px 18px rgba(0, 0, 0, 0.55),
             inset 0 1px 0 rgba(255, 255, 255, 0.04);
         cursor: default;
@@ -521,7 +554,6 @@
             inset 0 1px 0 rgba(255, 255, 255, 0.04);
     }
 
-    /* tooltip (estilo "vidrio" consistente con el panel) - ACTUALIZADO */
     .flag::after {
         content: attr(data-tip);
         position: absolute;
@@ -531,11 +563,11 @@
         white-space: pre-wrap;
         min-width: 180px;
         max-width: 360px;
-        background: var(--glass-bg); /* Color consistente */
+        background: var(--glass-bg);
         color: var(--text);
         padding: 10px 12px;
         border-radius: 12px;
-        border: 1px solid var(--glass-border); /* Borde consistente */
+        border: 1px solid var(--glass-border);
         backdrop-filter: blur(var(--blur));
         box-shadow: 0 12px 36px rgba(0, 0, 0, 0.6);
         opacity: 0;
@@ -546,7 +578,7 @@
         font-size: 13px;
         line-height: 1.3;
     }
-    /* pequeño triángulo debajo del tooltip para conectar visualmente - ACTUALIZADO */
+
     .flag::before {
         content: "";
         position: absolute;
@@ -555,9 +587,9 @@
         transform: translateX(-50%) rotate(45deg) scale(0.85);
         width: 12px;
         height: 12px;
-        background: var(--glass-bg); /* Color consistente */
-        border-left: 1px solid var(--glass-border); /* Borde consistente */
-        border-top: 1px solid var(--glass-border); /* Borde consistente */
+        background: var(--glass-bg);
+        border-left: 1px solid var(--glass-border);
+        border-top: 1px solid var(--glass-border);
         opacity: 0;
         pointer-events: none;
         transition: opacity 0.16s ease, transform 0.16s ease;
@@ -572,14 +604,12 @@
         transform: translate(-50%, -12px) scale(1);
     }
 
-    /* focus accesible (keyboard) */
     .flag:focus {
         outline: none;
         box-shadow: 0 0 0 3px var(--ring);
         transform: translateY(-3px);
     }
 
-    /* NUEVO: Estilos para el menú de usos - ACTUALIZADO con fondo similar a flags */
     .uses-container {
         position: relative;
     }
@@ -610,9 +640,9 @@
         bottom: 100%;
         right: 0;
         width: 360px;
-        background: var(--glass-bg); /* Color consistente */
+        background: var(--glass-bg);
         backdrop-filter: blur(20px);
-        border: 1px solid var(--glass-border); /* Borde consistente */
+        border: 1px solid var(--glass-border);
         border-radius: var(--radius-lg);
         box-shadow: 0 8px 18px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.04);
         padding: 12px;
@@ -722,6 +752,31 @@
             width: 280px;
             right: -20px;
         }
+        
+        .github-link span {
+            display: none;
+        }
+        .github-link {
+            padding: 6px;
+            transform: translateY(-2px);
+        }
+        
+        .title-container {
+            align-items: center;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .github-link {
+            position: absolute;
+            top: 0;
+            right: 0;
+            transform: none;
+        }
+        
+        .title {
+            padding-right: 40px;
+        }
     }
 
 		</style>
@@ -731,8 +786,14 @@
 
 		<div class="wrap">
 			<header>
-				<div>
+				<div class="title-container">
 					<h1 class="title">Linux Commands</h1>
+					<a href="https://github.com/narenbiardo" class="github-link" aria-label="Visit my GitHub profile">
+						<svg class="github-icon" viewBox="0 0 24 24" aria-hidden="true">
+							<path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+						</svg>
+						<span>narenbiardo</span>
+					</a>
 				</div>
 			</header>
 
@@ -810,7 +871,6 @@
 		</div>
 
 		<script>
-			/* Helper para escapar texto dentro de atributos */
 			function escapeAttr(s = "") {
 				return String(s)
 					.replaceAll("&", "&amp;")
@@ -820,25 +880,18 @@
 					.replaceAll(">", "&gt;");
 			}
 
-			/* --- REEMPLAZA la función formatCommand existente por esta versión --- */
         function formatCommand(cmd) {
         if (!cmd) return "";
 
-        // Acepta tanto {folder} como {dir} en el input, pero normaliza a {dir}
         let s = cmd.replace(/\{folder\}/g, "{dir}");
 
-        // Primero reemplazamos los placeholders por spans con clases (manteniendo llaves visibles)
         s = s
             .replace(/\{ip\}/g, '<span class="placeholder ip">{ip}</span>')
             .replace(/\{file\}/g, '<span class="placeholder file">{file}</span>')
             .replace(/\{dir\}/g, '<span class="placeholder dir">{dir}</span>')
             .replace(/\{string\}/g, '<span class="placeholder string">{string}</span>');
 
-        // Luego, envolvemos únicamente la primera palabra (el nombre del comando al inicio)
-        // con la clase .cmd-name para que quede en dorado.
-        // Usamos una función para no interferir con spans ya insertados.
         s = s.replace(/^(\s*)([^\s<]+)/, function (match, leading, firstToken) {
-            // si el primer token ya es un span (raro), no lo reempaquetamos
             if (/^<span/.test(firstToken)) return match;
             return leading + '<span class="cmd-name">' + firstToken + '</span>';
         });
@@ -914,7 +967,7 @@
 						{flag: "-f", desc: "Force removal without confirmation", example: "rm -f file.txt"},
 						{flag: "-r", desc: "Remove directories recursively", example: "rm -r directory"},
 						{flag: "-i", desc: "Interactive removal prompt", example: "rm -i file.txt"}
-					],
+				],
 					uses: [
 						{command: "rm {file}", desc: "Remove a single file"},
 						{command: "rm -r {dir}", desc: "Remove a directory and its contents"},
@@ -1108,7 +1161,6 @@
 				toastTimer = setTimeout(() => toast.classList.remove("show"), 1600);
 			}
 
-			/* Nuevo: función para renderizar flags con tooltips */
 			function flagsTemplate(flags) {
 				if (!flags || flags.length === 0) {
 					return '<span class="flag" data-tip="No flags"></span>';
@@ -1120,7 +1172,6 @@
 				}).join('');
 			}
 
-			/* Nuevo: función para renderizar los usos */
 			function usesTemplate(uses) {
 				if (!uses || uses.length === 0) {
 					return '<div class="uses-container"><button class="uses-toggle">No uses</button></div>';
@@ -1214,36 +1265,29 @@
 			renderTags();
 			renderRows(COMMANDS);
 
-			// Nuevo: manejar el clic en los botones de usos
 			document.addEventListener('click', function(e) {
-				// Cerrar todos los menús de usos al hacer clic fuera
 				if (!e.target.closest('.uses-container')) {
 					$$('.uses-menu').forEach(menu => menu.classList.remove('show'));
 				}
 				
-				// Abrir/cerrar menú de usos
 				const toggleBtn = e.target.closest('.uses-toggle');
 				if (toggleBtn) {
 					e.stopPropagation();
 					const menu = toggleBtn.nextElementSibling;
 					const isOpen = menu.classList.contains('show');
 					
-					// Cerrar todos los demás menús
 					$$('.uses-menu.show').forEach(m => {
 						if (m !== menu) m.classList.remove('show');
 					});
 					
-					// Alternar el menú actual
 					menu.classList.toggle('show', !isOpen);
 				}
 				
-				// Manejar clic en un ítem de uso
 				const useItem = e.target.closest('.use-item');
 				if (useItem) {
 					const command = useItem.dataset.command;
 					copy(command, command.split(' ')[0]);
-					
-					// Cerrar el menú después de copiar
+
 					useItem.closest('.uses-menu').classList.remove('show');
 				}
 			});
@@ -1306,8 +1350,6 @@
 				if (cellIndex === 0) {
 					copy(cmdName, cmdName);
 				}
-				// Eliminamos la funcionalidad de copiar al hacer clic en la celda de uses
-				// ya que ahora tenemos un menú desplegable
 			});
 
 			tbody.addEventListener("keydown", e => {
