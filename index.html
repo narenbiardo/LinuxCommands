@@ -22,6 +22,8 @@
         --radius-lg: 16px;
         --radius-xl: 22px;
         --blur: 10px;
+        --glass-bg: rgba(124, 247, 212, 0.12); /* Aumentada opacidad para mejor legibilidad */
+        --glass-border: rgba(124, 247, 212, 0.25); /* Borde más visible */
     }
 
     html,
@@ -261,13 +263,9 @@
         top: calc(100% + 8px);
         left: 0;
         width: 100%;
-        background: linear-gradient(
-            180deg,
-            rgba(40, 45, 60, 0.95),
-            rgba(30, 35, 50, 0.95)
-        );
+        background: var(--glass-bg); /* Color consistente con mejor opacidad */
         backdrop-filter: blur(20px);
-        border: 1px solid rgba(255, 255, 255, 0.25);
+        border: 1px solid var(--glass-border); /* Borde consistente */
         border-radius: var(--radius-lg);
         box-shadow: var(--shadow);
         padding: 8px 0;
@@ -373,7 +371,7 @@
     /* --- REEMPLAZA las reglas antiguas de placeholders por este bloque --- */
 
     /* estilo base "plástico" para todas las etiquetas entre {} */
-    .cmd .placeholder {
+    .cmd .placeholder, .use-command .placeholder {
         display: inline-block;
         padding: 2px 8px;
         border-radius: 10px;
@@ -392,7 +390,7 @@
     }
 
     /* brillo/plástico: una línea de brillo sutil */
-    .cmd .placeholder::after{
+    .cmd .placeholder::after, .use-command .placeholder::after {
         content: "";
         position: absolute;
         pointer-events: none;
@@ -415,7 +413,7 @@
     }
 
     /* COLORES solicitados: {ip} rosado; {file} aqua; {dir} verde; {string} deja un tono contrastante */
-    .cmd .ip {
+    .cmd .ip, .use-command .ip {
         color: white;
         background: linear-gradient(180deg, rgba(255,111,185,0.26), rgba(255,111,185,0.10));
         border-color: rgba(255,111,185,0.28);
@@ -425,7 +423,7 @@
     }
 
     /* aqua contrastante */
-    .cmd .file {
+    .cmd .file, .use-command .file {
         color: #04242a;
         background: linear-gradient(180deg, rgba(94,224,255,0.95), rgba(94,224,255,0.16));
         border-color: rgba(94,224,255,0.35);
@@ -435,7 +433,7 @@
     }
 
     /* {dir} (reemplazo de folder) en verde contrastante */
-    .cmd .dir {
+    .cmd .dir, .use-command .dir {
         color: #04240a;
         background: linear-gradient(180deg, rgba(107,255,176,0.95), rgba(107,255,176,0.12));
         border-color: rgba(107,255,176,0.28);
@@ -445,7 +443,7 @@
     }
 
     /* compatibilidad: si aún hay .folder, que responda igual que .dir */
-    .cmd .folder {
+    .cmd .folder, .use-command .folder {
         color: #04240a;
         background: linear-gradient(180deg, rgba(107,255,176,0.95), rgba(107,255,176,0.12));
         border-color: rgba(107,255,176,0.28);
@@ -455,7 +453,7 @@
     }
 
     /* string - deja un rosa pálido (si lo usas) */
-    .cmd .string {
+    .cmd .string, .use-command .string {
         color: #2b0a10;
         background: linear-gradient(180deg, rgba(245,169,184,0.95), rgba(245,169,184,0.12));
         border-color: rgba(245,169,184,0.22);
@@ -464,7 +462,7 @@
     }
 
     /* "Comando inicial" en dorado solo al inicio de la cadena */
-    .cmd .cmd-name {
+    .cmd .cmd-name, .use-command .cmd-name {
         color: #d4af37; /* dorado */
         font-weight: 900;
         letter-spacing: 0.4px;
@@ -476,15 +474,15 @@
     }
 
     /* interacción */
-    .cmd .cmd-name:hover {
+    .cmd .cmd-name:hover, .use-command .cmd-name:hover {
         transform: translateY(-2px) scale(1.02);
         text-shadow: 0 3px 10px rgba(212,175,55,0.28);
     }
 
     /* Asegura que los placeholders mantengan buen espaciado en móviles */
     @media (max-width:720px){
-        .cmd .placeholder { padding: 2px 6px; border-radius: 8px; }
-        .cmd .cmd-name { padding-right: 4px; }
+        .cmd .placeholder, .use-command .placeholder { padding: 2px 6px; border-radius: 8px; }
+        .cmd .cmd-name, .use-command .cmd-name { padding-right: 4px; }
     }
 
     /* --- NUEVO: tokens de flags --- */
@@ -509,8 +507,8 @@
         font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
             monospace;
         color: var(--accent);
-        background: rgba(124, 247, 212, 0.06); /* mismo tono para todos */
-        border: 1px solid rgba(124, 247, 212, 0.18);
+        background: var(--glass-bg); /* Color consistente */
+        border: 1px solid var(--glass-border); /* Borde consistente */
         box-shadow: 0 8px 18px rgba(0, 0, 0, 0.55),
             inset 0 1px 0 rgba(255, 255, 255, 0.04);
         cursor: default;
@@ -523,7 +521,7 @@
             inset 0 1px 0 rgba(255, 255, 255, 0.04);
     }
 
-    /* tooltip (estilo "vidrio" consistente con el panel) */
+    /* tooltip (estilo "vidrio" consistente con el panel) - ACTUALIZADO */
     .flag::after {
         content: attr(data-tip);
         position: absolute;
@@ -533,15 +531,11 @@
         white-space: pre-wrap;
         min-width: 180px;
         max-width: 360px;
-        background: linear-gradient(
-            180deg,
-            rgba(255, 255, 255, 0.04),
-            rgba(255, 255, 255, 0.02)
-        );
+        background: var(--glass-bg); /* Color consistente */
         color: var(--text);
         padding: 10px 12px;
         border-radius: 12px;
-        border: 1px solid rgba(255, 255, 255, 0.08);
+        border: 1px solid var(--glass-border); /* Borde consistente */
         backdrop-filter: blur(var(--blur));
         box-shadow: 0 12px 36px rgba(0, 0, 0, 0.6);
         opacity: 0;
@@ -552,7 +546,7 @@
         font-size: 13px;
         line-height: 1.3;
     }
-    /* pequeño triángulo debajo del tooltip para conectar visualmente */
+    /* pequeño triángulo debajo del tooltip para conectar visualmente - ACTUALIZADO */
     .flag::before {
         content: "";
         position: absolute;
@@ -561,13 +555,9 @@
         transform: translateX(-50%) rotate(45deg) scale(0.85);
         width: 12px;
         height: 12px;
-        background: linear-gradient(
-            180deg,
-            rgba(255, 255, 255, 0.04),
-            rgba(255, 255, 255, 0.02)
-        );
-        border-left: 1px solid rgba(255, 255, 255, 0.06);
-        border-top: 1px solid rgba(255, 255, 255, 0.06);
+        background: var(--glass-bg); /* Color consistente */
+        border-left: 1px solid var(--glass-border); /* Borde consistente */
+        border-top: 1px solid var(--glass-border); /* Borde consistente */
         opacity: 0;
         pointer-events: none;
         transition: opacity 0.16s ease, transform 0.16s ease;
@@ -587,6 +577,90 @@
         outline: none;
         box-shadow: 0 0 0 3px var(--ring);
         transform: translateY(-3px);
+    }
+
+    /* NUEVO: Estilos para el menú de usos - ACTUALIZADO con fondo similar a flags */
+    .uses-container {
+        position: relative;
+    }
+
+    .uses-toggle {
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(124, 247, 212, 0.25);
+        border-radius: 999px;
+        padding: 6px 12px;
+        color: var(--accent);
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(var(--blur));
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    .uses-toggle:hover {
+        background: rgba(124, 247, 212, 0.12);
+        box-shadow: 0 0 12px rgba(124, 247, 212, 0.3);
+    }
+
+    .uses-menu {
+        position: absolute;
+        bottom: 100%;
+        right: 0;
+        width: 360px;
+        background: var(--glass-bg); /* Color consistente */
+        backdrop-filter: blur(20px);
+        border: 1px solid var(--glass-border); /* Borde consistente */
+        border-radius: var(--radius-lg);
+        box-shadow: 0 8px 18px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+        padding: 12px;
+        margin-bottom: 8px;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(10px);
+        transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+        z-index: 20;
+        max-height: 300px;
+        overflow-y: auto;
+    }
+
+    .uses-menu.show {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+
+    .use-item {
+        padding: 10px 12px;
+        border-radius: 8px;
+        margin-bottom: 8px;
+        cursor: pointer;
+        transition: background 0.2s ease;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+    }
+
+    .use-item:hover {
+        background: rgba(124, 247, 212, 0.15);
+    }
+
+    .use-command {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        font-weight: 700;
+        color: var(--accent);
+    }
+
+    .use-desc {
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.4;
+    }
+
+    .use-item:last-child {
+        margin-bottom: 0;
     }
 
     .toast {
@@ -643,6 +717,10 @@
         thead th:nth-child(3),
         td:nth-child(3) {
             display: none;
+        }
+        .uses-menu {
+            width: 280px;
+            right: -20px;
         }
     }
 
@@ -719,7 +797,7 @@
 							<th scope="col">Command</th>
 							<th scope="col">Description</th>
 							<th scope="col">Flags</th>
-							<th scope="col">Example</th>
+							<th scope="col">Uses</th>
 						</tr>
 					</thead>
 					<tbody id="tbody"></tbody>
@@ -777,7 +855,11 @@
 						{flag: "-i", desc: "Identity file for authentication", example: "ssh -i key.pem user@host"},
 						{flag: "-l", desc: "Specify login name", example: "ssh -l username host"}
 					],
-					example: "ssh -i ~/.ssh/key.pem user@192.168.1.1",
+					uses: [
+						{command: "ssh user@{ip}", desc: "Basic SSH connection to a server"},
+						{command: "ssh -p {port} user@{ip}", desc: "SSH connection on a non-standard port"},
+						{command: "ssh -i {file} user@{ip}", desc: "SSH using a specific private key"}
+					],
 					tags: ["network"],
 				},
 				{
@@ -787,7 +869,10 @@
 						{flag: "-u", desc: "Switch to specified user", example: "pbrun su -u username"},
 						{flag: "-l", desc: "List available commands", example: "pbrun su -l"}
 					],
-					example: "pbrun su",
+					uses: [
+						{command: "pbrun su", desc: "Switch to root user"},
+						{command: "pbrun su -u {user}", desc: "Switch to a specific user"}
+					],
 					tags: ["system"],
 				},
 				{
@@ -797,7 +882,11 @@
 						{flag: "-c", desc: "Execute command string", example: "bash -c 'echo hello'"},
 						{flag: "-l", desc: "Make bash act as login shell", example: "bash -l"}
 					],
-					example: "bash",
+					uses: [
+						{command: "bash", desc: "Start a new Bash shell"},
+						{command: "bash -c '{command}'", desc: "Execute a single command and exit"},
+						{command: "bash {file}", desc: "Execute a Bash script"}
+					],
 					tags: ["system"],
 				},
 				{
@@ -810,7 +899,12 @@
                         {flag: "-1", desc: "List one file per line", example: "ls -1"},
 						{flag: "--sort", desc: "Sort by size, time, version, etc.", example: "ls --sort=size"}
 					],
-					example: "ls -ltr --sort=size",
+					uses: [
+						{command: "ls", desc: "List files in current directory"},
+						{command: "ls -l", desc: "Detailed list with permissions and sizes"},
+						{command: "ls -la", desc: "Show all files including hidden ones"},
+						{command: "ls -ltr", desc: "List files by time, oldest first"}
+					],
 					tags: ["files"],
 				},
 				{
@@ -821,7 +915,12 @@
 						{flag: "-r", desc: "Remove directories recursively", example: "rm -r directory"},
 						{flag: "-i", desc: "Interactive removal prompt", example: "rm -i file.txt"}
 					],
-					example: "rm -f *",
+					uses: [
+						{command: "rm {file}", desc: "Remove a single file"},
+						{command: "rm -r {dir}", desc: "Remove a directory and its contents"},
+						{command: "rm -f {file}", desc: "Force remove without confirmation"},
+						{command: "rm -i *.txt", desc: "Interactively remove multiple text files"}
+					],
 					tags: ["files"],
 				},
 				{
@@ -832,7 +931,12 @@
 						{flag: "-i", desc: "Prompt before overwrite", example: "cp -i file1 file2"},
 						{flag: "-v", desc: "Verbose output", example: "cp -v file1 file2"}
 					],
-					example: "cp document.txt /backup/",
+					uses: [
+						{command: "cp {file} {dir}", desc: "Copy a file to a directory"},
+						{command: "cp -r {dir1} {dir2}", desc: "Copy a directory recursively"},
+						{command: "cp -i {file1} {file2}", desc: "Copy with overwrite confirmation"},
+						{command: "cp -v {file}* {dir}", desc: "Verbose copy of multiple files"}
+					],
 					tags: ["files"],
 				},
 				{
@@ -843,7 +947,12 @@
 						{flag: "-v", desc: "Verbose output", example: "mv -v file1 file2"},
 						{flag: "-n", desc: "Do not overwrite existing file", example: "mv -n file1 file2"}
 					],
-					example: "mv photo.jpg /images/",
+					uses: [
+						{command: "mv {file} {newname}", desc: "Rename a file"},
+						{command: "mv {file} {dir}", desc: "Move a file to another directory"},
+						{command: "mv -i {old} {new}", desc: "Move with overwrite confirmation"},
+						{command: "mv *.txt {dir}", desc: "Move multiple files to a directory"}
+					],
 					tags: ["files"],
 				},
 				{
@@ -854,7 +963,12 @@
 						{flag: "-T", desc: "Display file system type", example: "df -T"},
 						{flag: "-i", desc: "Show inode information", example: "df -i"}
 					],
-					example: "df -h /home/",
+					uses: [
+						{command: "df", desc: "Show disk space usage for all filesystems"},
+						{command: "df -h", desc: "Show human-readable disk space usage"},
+						{command: "df -h {dir}", desc: "Show disk space for a specific directory"},
+						{command: "df -i", desc: "Show inode usage instead of block usage"}
+					],
 					tags: ["system"],
 				},
 				{
@@ -865,7 +979,12 @@
 						{flag: "-b", desc: "Number non-empty output lines", example: "cat -b file.txt"},
 						{flag: "-s", desc: "Squeeze multiple adjacent empty lines", example: "cat -s file.txt"}
 					],
-					example: "cat config.txt",
+					uses: [
+						{command: "cat {file}", desc: "Display contents of a file"},
+						{command: "cat -n {file}", desc: "Display contents with line numbers"},
+						{command: "cat {file1} {file2}", desc: "Concatenate multiple files"},
+						{command: "cat > {newfile}", desc: "Create a new file from standard input"}
+					],
 					tags: ["files", "text"],
 				},
 				{
@@ -876,7 +995,12 @@
 						{flag: "-v", desc: "Verbose mode", example: "gzip -v file.txt"},
 						{flag: "-d", desc: "Decompress", example: "gzip -d file.txt.gz"}
 					],
-					example: "gzip largefile.log",
+					uses: [
+						{command: "gzip {file}", desc: "Compress a file (creates file.txt.gz)"},
+						{command: "gzip -d {file}.gz", desc: "Decompress a gzipped file"},
+						{command: "gzip -k {file}", desc: "Compress but keep original file"},
+						{command: "gzip -9 {file}", desc: "Maximum compression (slower)"}
+					],
 					tags: ["files", "archive"],
 				},
 				{
@@ -887,7 +1011,12 @@
 						{flag: "-f", desc: "Display FQDN (Fully Qualified Domain Name)", example: "hostname -f"},
 						{flag: "-d", desc: "Display DNS domain name", example: "hostname -d"}
 					],
-					example: "hostname",
+					uses: [
+						{command: "hostname", desc: "Show the system hostname"},
+						{command: "hostname -I", desc: "Show all IP addresses"},
+						{command: "hostname -f", desc: "Show fully qualified domain name"},
+						{command: "hostname {newname}", desc: "Temporarily change hostname (requires root)"}
+					],
 					tags: ["system"],
 				},
 				{
@@ -897,14 +1026,22 @@
 						{flag: "-L", desc: "Print logical current directory", example: "pwd -L"},
 						{flag: "-P", desc: "Print physical directory without symlinks", example: "pwd -P"}
 					],
-					example: "pwd",
+					uses: [
+						{command: "pwd", desc: "Show current working directory"},
+						{command: "pwd -P", desc: "Show physical path without symlinks"},
+						{command: "pwd -L", desc: "Show logical path (with symlinks)"}
+					],
 					tags: ["files", "basics"],
 				},
 				{
 					cmd: "exit",
 					desc: "Close current session",
 					flags: [],
-					example: "exit",
+					uses: [
+						{command: "exit", desc: "Exit the current shell session"},
+						{command: "exit 0", desc: "Exit with success status code"},
+						{command: "exit 1", desc: "Exit with error status code"}
+					],
 					tags: ["system"],
 				},
 				{
@@ -915,7 +1052,12 @@
 						{flag: "-i", desc: "Ignore case in searches", example: "less -i file.txt"},
 						{flag: "-S", desc: "Chop long lines instead of wrapping", example: "less -S file.txt"}
 					],
-					example: "less longfile.txt",
+					uses: [
+						{command: "less {file}", desc: "View a file with navigation"},
+						{command: "less -N {file}", desc: "View with line numbers"},
+						{command: "less -S {file}", desc: "View without line wrapping"},
+						{command: "ls -la | less", desc: "Pipe command output to less for paging"}
+					],
 					tags: ["files", "text"],
 				},
 			];
@@ -978,8 +1120,37 @@
 				}).join('');
 			}
 
+			/* Nuevo: función para renderizar los usos */
+			function usesTemplate(uses) {
+				if (!uses || uses.length === 0) {
+					return '<div class="uses-container"><button class="uses-toggle">No uses</button></div>';
+				}
+				
+				const usesItems = uses.map(use => `
+					<div class="use-item" data-command="${escapeAttr(use.command)}">
+						<div class="use-command">${formatCommand(use.command)}</div>
+						<div class="use-desc">${use.desc}</div>
+					</div>
+				`).join('');
+				
+				return `
+					<div class="uses-container">
+						<button class="uses-toggle">
+							View uses
+							<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+								<polyline points="18 15 12 9 6 15"></polyline>
+							</svg>
+						</button>
+						<div class="uses-menu">
+							${usesItems}
+						</div>
+					</div>
+				`;
+			}
+
 			function rowTemplate(c) {
 				const flagsCell = flagsTemplate(c.flags);
+				const usesCell = usesTemplate(c.uses);
 				return `
       <tr data-tags="${c.tags.join(",")}" data-cat="${
 					c.tags.find(t =>
@@ -998,7 +1169,7 @@
         </td>
         <td>${c.desc}</td>
         <td class="flags">${flagsCell}</td>
-        <td class="example">${formatCommand(c.example)}</td>
+        <td class="uses">${usesCell}</td>
       </tr>`;
 			}
 			function renderRows(list) {
@@ -1021,7 +1192,7 @@
 						" " +
 						c.flags.map(f => f.flag + " " + f.desc).join(" ") +
 						" " +
-						c.example
+						c.uses.map(u => u.command + " " + u.desc).join(" ")
 					).toLowerCase();
 					const matchQ = !q || hay.includes(q);
 					const matchCat = cat === "all" || c.tags.includes(cat);
@@ -1042,6 +1213,40 @@
 
 			renderTags();
 			renderRows(COMMANDS);
+
+			// Nuevo: manejar el clic en los botones de usos
+			document.addEventListener('click', function(e) {
+				// Cerrar todos los menús de usos al hacer clic fuera
+				if (!e.target.closest('.uses-container')) {
+					$$('.uses-menu').forEach(menu => menu.classList.remove('show'));
+				}
+				
+				// Abrir/cerrar menú de usos
+				const toggleBtn = e.target.closest('.uses-toggle');
+				if (toggleBtn) {
+					e.stopPropagation();
+					const menu = toggleBtn.nextElementSibling;
+					const isOpen = menu.classList.contains('show');
+					
+					// Cerrar todos los demás menús
+					$$('.uses-menu.show').forEach(m => {
+						if (m !== menu) m.classList.remove('show');
+					});
+					
+					// Alternar el menú actual
+					menu.classList.toggle('show', !isOpen);
+				}
+				
+				// Manejar clic en un ítem de uso
+				const useItem = e.target.closest('.use-item');
+				if (useItem) {
+					const command = useItem.dataset.command;
+					copy(command, command.split(' ')[0]);
+					
+					// Cerrar el menú después de copiar
+					useItem.closest('.uses-menu').classList.remove('show');
+				}
+			});
 
 			search.addEventListener("input", applyFilters);
 			category.addEventListener("change", function() {
@@ -1099,13 +1304,10 @@
 				const cmdName = row.querySelector(".cmd").textContent;
 				
 				if (cellIndex === 0) {
-
 					copy(cmdName, cmdName);
-				} else if (cellIndex === 3) {
-
-					const exampleText = row.querySelector(".example").textContent;
-					copy(exampleText, cmdName);
 				}
+				// Eliminamos la funcionalidad de copiar al hacer clic en la celda de uses
+				// ya que ahora tenemos un menú desplegable
 			});
 
 			tbody.addEventListener("keydown", e => {
@@ -1119,7 +1321,7 @@
 			});
 
 			const observer = new MutationObserver(() => {
-				$$("#tbody tr td:first-child, #tbody tr td:last-child").forEach(td => (td.tabIndex = 0));
+				$$("#tbody tr td:first-child").forEach(td => (td.tabIndex = 0));
 			});
 			observer.observe(tbody, { childList: true });
 
