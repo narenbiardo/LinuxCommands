@@ -10,775 +10,956 @@
 		/>
 		<style>
 			:root {
-        --bg: #0b0c10;
-        --surface: rgba(255, 255, 255, 0.06);
-        --surface-2: rgba(255, 255, 255, 0.08);
-        --text: #e8f1f2;
-        --muted: #a9b2b3;
-        --accent: #7cf7d4;
-        --accent-2: #6bbcff;
-        --ring: rgba(124, 247, 212, 0.35);
-        --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
-        --radius-lg: 16px;
-        --radius-xl: 22px;
-        --blur: 10px;
-        --glass-bg: rgba(124, 247, 212, 0.12);
-        --glass-border: rgba(124, 247, 212, 0.25);
-    }
+				--bg: #0b0c10;
+				--surface: rgba(255, 255, 255, 0.06);
+				--surface-2: rgba(255, 255, 255, 0.08);
+				--text: #e8f1f2;
+				--muted: #a9b2b3;
+				--accent: #7cf7d4;
+				--accent-2: #6bbcff;
+				--ring: rgba(124, 247, 212, 0.35);
+				--shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+				--radius-lg: 16px;
+				--radius-xl: 22px;
+				--blur: 10px;
+				--glass-bg: rgba(124, 247, 212, 0.12);
+				--glass-border: rgba(124, 247, 212, 0.25);
+				--console-bg: rgba(11, 14, 20, 0.9);
+				--console-header: rgba(0, 0, 0, 0.4);
+				--console-text: #d0ffef;
+				--console-cursor: var(--accent);
+			}
 
-    html,
-    body {
-        height: 100%;
-    }
-    body {
-        margin: 0;
-        color: var(--text);
-        background: var(--bg);
-        font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, sans-serif;
-        -webkit-font-smoothing: antialiased;
-        text-rendering: optimizeLegibility;
-        overflow-y: overlay;
-        position: relative;
-    }
+			html,
+			body {
+				height: 100%;
+			}
 
-    .background {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 200%;
-        z-index: -1;
-        background:
-            radial-gradient(
-                    circle at 30% 40%,
-                    rgba(66, 141, 255, 0.15) 0%,
-                    transparent 40%
-                ),
-            radial-gradient(
-                    circle at 70% 20%,
-                    rgba(124, 247, 212, 0.12) 0%,
-                    transparent 40%
-                ),
-            radial-gradient(
-                    circle at 50% 50%,
-                    rgba(255, 255, 255, 0.03) 1px,
-                    transparent 1px
-                ),
-            linear-gradient(
-                    to bottom,
-                    rgba(11, 12, 16, 0.9) 0%,
-                    rgba(18, 25, 44, 0.7) 40%,
-                    rgba(11, 12, 16, 0.9) 100%
-                );
-        background-size: 100% 100%, 100% 100%, 30px 30px, 100% 100%;
-        animation: backgroundScroll 120s linear infinite;
-        pointer-events: none;
-    }
+			body {
+				margin: 0;
+				color: var(--text);
+				background: var(--bg);
+				font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu,
+					Cantarell, Noto Sans, Helvetica, Arial, sans-serif;
+				-webkit-font-smoothing: antialiased;
+				text-rendering: optimizeLegibility;
+				overflow-y: overlay;
+				position: relative;
+			}
 
-    @keyframes backgroundScroll {
-        0% {
-            transform: translateY(0);
-        }
-        100% {
-            transform: translateY(-50%);
-        }
-    }
+			.background {
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 200%;
+				z-index: -1;
+				background: radial-gradient(
+						circle at 30% 40%,
+						rgba(66, 141, 255, 0.15) 0%,
+						transparent 40%
+					),
+					radial-gradient(
+						circle at 70% 20%,
+						rgba(124, 247, 212, 0.12) 0%,
+						transparent 40%
+					),
+					radial-gradient(
+						circle at 50% 50%,
+						rgba(255, 255, 255, 0.03) 1px,
+						transparent 1px
+					),
+					linear-gradient(
+						to bottom,
+						rgba(11, 12, 16, 0.9) 0%,
+						rgba(18, 25, 44, 0.7) 40%,
+						rgba(11, 12, 16, 0.9) 100%
+					);
+				background-size: 100% 100%, 100% 100%, 30px 30px, 100% 100%;
+				animation: backgroundScroll 120s linear infinite;
+				pointer-events: none;
+			}
 
-    .wrap {
-        max-width: 1100px;
-        margin: 40px auto;
-        padding: 0 20px 80px;
-    }
+			@keyframes backgroundScroll {
+				0% {
+					transform: translateY(0);
+				}
+				100% {
+					transform: translateY(-50%);
+				}
+			}
 
-    header {
-        display: flex;
-        align-items: flex-end;
-        justify-content: space-between;
-        margin-bottom: 20px;
-        position: relative;
-    }
-    .title {
-        font-weight: 800;
-        letter-spacing: 0.4px;
-        line-height: 1.05;
-        margin: 0;
-        font-size: clamp(28px, 4vw, 44px);
-        background: linear-gradient(90deg, var(--accent), var(--accent-2));
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-        filter: drop-shadow(0 6px 18px rgba(124, 247, 212, 0.12));
-        display: inline-block;
-    }
-    .subtitle {
-        margin: 6px 0 0;
-        color: var(--muted);
-        font-size: clamp(12px, 1.8vw, 14.5px);
-    }
+			.wrap {
+				max-width: 1100px;
+				margin: 40px auto;
+				padding: 0 20px 80px;
+			}
 
-    /* GitHub link styles - REDISEÑADO */
-    .github-link {
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        text-decoration: none;
-        color: var(--muted);
-        transition: all 0.3s ease;
-        padding: 4px 10px;
-        border-radius: 999px;
-        background: rgba(255, 255, 255, 0.03);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        backdrop-filter: blur(var(--blur));
-        margin-left: 12px;
-        transform: translateY(-4px);
-        position: relative;
-        font-size: 13px;
-        line-height: 1;
-        vertical-align: super;
-    }
+			header {
+				display: flex;
+				align-items: flex-start;
+				justify-content: space-between;
+				margin-bottom: 20px;
+				position: relative;
+				flex-wrap: wrap;
+			}
 
-    .github-link:hover {
-        color: var(--accent);
-        background: rgba(124, 247, 212, 0.08);
-        border-color: rgba(124, 247, 212, 0.2);
-        box-shadow: 0 0 12px rgba(124, 247, 212, 0.15);
-        transform: translateY(-4px) scale(1.05);
-    }
+			.title {
+				font-weight: 800;
+				letter-spacing: 0.4px;
+				line-height: 1.05;
+				margin: 0;
+				font-size: clamp(28px, 4vw, 44px);
+				background: linear-gradient(90deg, var(--accent), var(--accent-2));
+				-webkit-background-clip: text;
+				background-clip: text;
+				color: transparent;
+				filter: drop-shadow(0 6px 18px rgba(124, 247, 212, 0.12));
+				display: inline-block;
+			}
 
-    .github-link span {
-        font-size: 13px;
-        font-weight: 600;
-    }
+			.title-container {
+				display: flex;
+				align-items: center;
+				flex-wrap: wrap;
+				margin-bottom: 15px;
+			}
 
-    .github-icon {
-        width: 16px;
-        height: 16px;
-        fill: currentColor;
-        flex-shrink: 0;
-    }
+			/* GitHub link styles */
+			.github-link {
+				display: inline-flex;
+				align-items: center;
+				gap: 6px;
+				text-decoration: none;
+				color: var(--muted);
+				transition: all 0.3s ease;
+				padding: 4px 10px;
+				border-radius: 999px;
+				background: rgba(255, 255, 255, 0.03);
+				border: 1px solid rgba(255, 255, 255, 0.08);
+				backdrop-filter: blur(var(--blur));
+				margin-left: 12px;
+				font-size: 13px;
+				line-height: 1;
+			}
 
-    .title-container {
-        display: flex;
-        align-items: flex-end;
-        flex-wrap: wrap;
-    }
+			.github-link:hover {
+				color: var(--accent);
+				background: rgba(124, 247, 212, 0.08);
+				border-color: rgba(124, 247, 212, 0.2);
+				box-shadow: 0 0 12px rgba(124, 247, 212, 0.15);
+				transform: scale(1.05);
+			}
 
-    .panel {
-        position: sticky;
-        top: 10px;
-        z-index: 5;
-        backdrop-filter: blur(var(--blur));
-        background: linear-gradient(
-            180deg,
-            rgba(255, 255, 255, 0.06),
-            rgba(255, 255, 255, 0.03)
-        );
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        box-shadow: var(--shadow);
-        border-radius: var(--radius-xl);
-        padding: 14px;
-        margin: 18px 0 22px;
-    }
+			.github-link span {
+				font-size: 13px;
+				font-weight: 600;
+			}
 
-    .controls {
-        display: grid;
-        grid-template-columns: 1fr auto;
-        gap: 12px;
-        align-items: center;
-    }
-    .search {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        padding: 10px 12px;
-        background: var(--surface);
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        border-radius: 999px;
-        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
-        height: 40px;
-        box-sizing: border-box;
-    }
-    .search input {
-        flex: 1;
-        background: transparent;
-        border: 0;
-        outline: 0;
-        color: var(--text);
-        font-size: 16px;
-        padding: 4px;
-        min-width: 0;
-    }
-    .search input::placeholder {
-        color: #9fb0b2;
-    }
+			.github-icon {
+				width: 16px;
+				height: 16px;
+				fill: currentColor;
+				flex-shrink: 0;
+			}
 
-    .tags {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-        margin-top: 10px;
-    }
-    .tag {
-        position: relative;
-        background: rgba(255, 255, 255, 0.08);
-        border: 1px solid rgba(124, 247, 212, 0.35);
-        backdrop-filter: blur(10px);
-        border-radius: 999px;
-        padding: 8px 12px;
-        cursor: pointer;
-        transition: background 0.3s ease, box-shadow 0.3s ease;
-        color: #c7fff0;
-        font-weight: 600;
-    }
-    .tag:hover {
-        background: rgba(124, 247, 212, 0.12);
-        box-shadow: 0 0 12px rgba(124, 247, 212, 0.6),
-            inset 0 0 6px rgba(124, 247, 212, 0.4);
-    }
-    .tag::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        border-radius: 999px;
-        background: linear-gradient(
-            120deg,
-            rgba(255, 255, 255, 0.2),
-            transparent,
-            rgba(255, 255, 255, 0.2)
-        );
-        opacity: 0;
-        transition: opacity 0.4s ease, transform 0.4s ease;
-        transform: scale(0.8);
-        pointer-events: none;
-    }
-    .tag:hover::before {
-        opacity: 1;
-        transform: scale(1.05);
-    }
-    .tag[data-active="true"] {
-        background: var(--accent);
-        color: #0b0c10;
-        border-color: var(--accent-2);
-        box-shadow: 0 0 14px rgba(124, 247, 212, 0.8);
-    }
-    .tag input {
-        appearance: none;
-        width: 16px;
-        height: 16px;
-        border-radius: 5px;
-        outline: none;
-        display: none;
-    }
+			/* Consola ASCII pequeña en esquina superior derecha */
+			.mini-console {
+				width: 380px;
+				height: 100px;
+				border-radius: var(--radius-xl);
+				overflow: hidden;
+				box-shadow: var(--shadow);
+				background: var(--console-bg);
+				border: 1px solid rgba(124, 247, 212, 0.25);
+				backdrop-filter: blur(var(--blur));
+				z-index: 6;
+				margin-left: 20px;
+			}
 
-    .select {
-        position: relative;
-        display: flex;
-        gap: 8px;
-        align-items: center;
-        background: rgba(255, 255, 255, 0.12);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        border-radius: 999px;
-        padding: 0 12px;
-        height: 40px;
-        box-sizing: border-box;
-        backdrop-filter: blur(var(--blur));
-        cursor: pointer;
-        min-width: 140px;
-    }
+			.console-header {
+				background: var(--console-header);
+				padding: 6px 10px;
+				display: flex;
+				align-items: center;
+				border-bottom: 1px solid rgba(124, 247, 212, 0.2);
+				position: sticky;
+				top: 0;
+				z-index: 1;
+				font-size: 12px;
+			}
 
-    .select select {
-        display: none;
-    }
+			.console-content {
+				padding: 8px 10px;
+				font-family: "Fira Code", "Cascadia Code", "Source Code Pro", monospace;
+				font-size: 12px;
+				line-height: 1.3;
+				color: var(--console-text);
+				overflow: hidden;
+				height: calc(100% - 30px);
+				overflow-y: auto;
+			}
 
-    .select-value {
-        font-weight: 600;
-        color: var(--text);
-        white-space: nowrap;
-    }
+			.console-content .console-line {
+				white-space: nowrap;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				margin-bottom: 2px;
+			}
 
-    .select-arrow {
-        width: 16px;
-        height: 16px;
-        transition: transform 0.3s ease;
-    }
+			.console-cursor {
+				display: inline-block;
+				width: 8px;
+				height: 16px;
+				background-color: var(--console-cursor);
+				vertical-align: middle;
+				animation: blink 1s infinite;
+			}
 
-    .select.open .select-arrow {
-        transform: rotate(180deg);
-    }
+			@keyframes blink {
+				0%,
+				50% {
+					opacity: 1;
+				}
+				51%,
+				100% {
+					opacity: 0;
+				}
+			}
 
-    .select-options {
-        position: absolute;
-        top: calc(100% + 8px);
-        left: 0;
-        width: 100%;
-        background: var(--glass-bg);
-        backdrop-filter: blur(20px);
-        border: 1px solid var(--glass-border);
-        border-radius: var(--radius-lg);
-        box-shadow: var(--shadow);
-        padding: 8px 0;
-        margin: 0;
-        list-style: none;
-        opacity: 0;
-        visibility: hidden;
-        transform: translateY(-10px);
-        transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
-        z-index: 10;
-        max-height: 300px;
-        overflow-y: auto;
-    }
+			/* Ajustes para el diseño del header */
+			.header-content {
+				display: flex;
+				justify-content: space-between;
+				align-items: flex-start;
+				width: 100%;
+				flex-wrap: wrap;
+			}
 
-    .select.open .select-options {
-        opacity: 1;
-        visibility: visible;
-        transform: translateY(0);
-    }
+			.title-section {
+				display: flex;
+				flex-direction: column;
+			}
 
-    .select-option {
-        padding: 10px 16px;
-        color: var(--text);
-        cursor: pointer;
-        transition: background 0.2s ease;
-    }
+			.console-container {
+				align-self: flex-end;
+			}
 
-    .select-option:hover {
-        background: rgba(124, 247, 212, 0.25);
-    }
+			/* Ajustes responsivos */
+			@media (max-width: 720px) {
+				.mini-console {
+					width: 100%;
+					height: 90px;
+					margin-left: 0;
+					margin-top: 15px;
+				}
 
-    .select-option[data-selected="true"] {
-        background: rgba(124, 247, 212, 0.35);
-        color: var(--accent);
-    }
+				.console-content {
+					padding: 6px 8px;
+				}
 
-    .card {
-        background: linear-gradient(
-            180deg,
-            rgba(255, 255, 255, 0.06),
-            rgba(255, 255, 255, 0.03)
-        );
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        border-radius: var(--radius-lg);
-        overflow: hidden;
-        box-shadow: var(--shadow);
-    }
+				.header-content {
+					flex-direction: column;
+				}
 
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        font-size: 15px;
-    }
-    caption {
-        text-align: left;
-        padding: 14px 16px;
-        color: var(--muted);
-        font-size: 13px;
-    }
-    thead th {
-        position: sticky;
-        top: 0;
-        backdrop-filter: blur(var(--blur));
-        background: linear-gradient(
-            180deg,
-            rgba(0, 0, 0, 0.35),
-            rgba(0, 0, 0, 0.15)
-        );
-        font-size: 12.5px;
-        text-transform: uppercase;
-        letter-spacing: 0.08em;
-        color: #cdd7d9;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-        padding: 12px 14px;
-        text-align: left;
-        font-weight: 800;
-    }
-    tbody tr {
-        transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
-        cursor: pointer;
-    }
-    tbody tr:hover {
-        transform: translateY(-1px);
-        background: rgba(255, 255, 255, 0.04);
-        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
-    }
-    td {
-        padding: 13px 14px;
-        border-bottom: 1px dashed rgba(255, 255, 255, 0.12);
-        vertical-align: top;
-    }
+				.console-container {
+					margin-left: 0;
+					margin-top: 15px;
+					width: 100%;
+				}
+			}
 
-    .cmd {
-        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "DejaVu Sans Mono", monospace;
-        font-weight: 700;
-    }
-    .flags,
-    .example {
-        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "DejaVu Sans Mono", monospace;
-        color: #d7f9ff;
-    }
+			@media (max-width: 480px) {
+				.github-link {
+					position: relative;
+					top: 0;
+					right: 0;
+					transform: none;
+				}
 
-    .cmd .placeholder, .use-command .placeholder {
-        display: inline-block;
-        padding: 2px 8px;
-        border-radius: 10px;
-        font-weight: 800;
-        font-size: 0.95em;
-        line-height: 1;
-        transform-origin: center;
-        box-shadow: 0 6px 14px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.12);
-        border: 1px solid rgba(255,255,255,0.08);
-        text-shadow: 0 1px 0 rgba(255,255,255,0.08);
-        transition: transform 160ms ease, box-shadow 260ms ease;
-        vertical-align: middle;
-        margin: 0 2px;
-        -webkit-font-smoothing: subpixel-antialiased;
-        position: relative;
-    }
+				.title {
+					padding-right: 0;
+				}
 
-    .cmd .placeholder::after, .use-command .placeholder::after {
-        content: "";
-        position: absolute;
-        pointer-events: none;
-        display: block;
-        left: 6%;
-        top: 8%;
-        width: 60%;
-        height: 24%;
-        border-radius: 8px;
-        background: linear-gradient(180deg, rgba(255,255,255,0.55), rgba(255,255,255,0.06));
-        opacity: 0.22;
-        transform: rotate(-10deg) translateZ(0);
-    }
+				.mini-console {
+					height: 80px;
+				}
 
-    @keyframes placeholderGlow {
-        0% { box-shadow: 0 6px 12px rgba(0,0,0,0.45), 0 0 0 rgba(0,0,0,0); }
-        50% { box-shadow: 0 10px 28px rgba(0,0,0,0.55), 0 0 8px rgba(0,0,0,0.04); }
-        100% { box-shadow: 0 6px 12px rgba(0,0,0,0.45), 0 0 0 rgba(0,0,0,0); }
-    }
+				.console-container {
+					margin-top: 10px;
+				}
 
-    .cmd .ip, .use-command .ip {
-        color: white;
-        background: linear-gradient(180deg, rgba(255,111,185,0.26), rgba(255,111,185,0.10));
-        border-color: rgba(255,111,185,0.28);
-        text-shadow: 0 2px 8px rgba(255,111,185,0.14);
-        animation: placeholderGlow 4.5s ease-in-out infinite;
-        position: relative;
-    }
+				.github-link span {
+					display: none;
+				}
+			}
 
-    .cmd .file, .use-command .file {
-        color: #04242a;
-        background: linear-gradient(180deg, rgba(94,224,255,0.95), rgba(94,224,255,0.16));
-        border-color: rgba(94,224,255,0.35);
-        text-shadow: 0 2px 8px rgba(94,224,255,0.10);
-        animation: placeholderGlow 5s ease-in-out infinite;
-        position: relative;
-    }
+			.panel {
+				position: sticky;
+				top: 10px;
+				z-index: 5;
+				backdrop-filter: blur(var(--blur));
+				background: linear-gradient(
+					180deg,
+					rgba(255, 255, 255, 0.06),
+					rgba(255, 255, 255, 0.03)
+				);
+				border: 1px solid rgba(255, 255, 255, 0.12);
+				box-shadow: var(--shadow);
+				border-radius: var(--radius-xl);
+				padding: 14px;
+				margin: 18px 0 22px;
+			}
 
-    .cmd .dir, .use-command .dir {
-        color: #04240a;
-        background: linear-gradient(180deg, rgba(107,255,176,0.95), rgba(107,255,176,0.12));
-        border-color: rgba(107,255,176,0.28);
-        text-shadow: 0 2px 8px rgba(107,255,176,0.10);
-        animation: placeholderGlow 5s ease-in-out infinite;
-        position: relative;
-    }
+			.controls {
+				display: grid;
+				grid-template-columns: 1fr auto;
+				gap: 12px;
+				align-items: center;
+			}
 
-    .cmd .folder, .use-command .folder {
-        color: #04240a;
-        background: linear-gradient(180deg, rgba(107,255,176,0.95), rgba(107,255,176,0.12));
-        border-color: rgba(107,255,176,0.28);
-        text-shadow: 0 2px 8px rgba(107,255,176,0.10);
-        animation: placeholderGlow 5s ease-in-out infinite;
-        position: relative;
-    }
+			.search {
+				display: flex;
+				align-items: center;
+				gap: 8px;
+				padding: 10px 12px;
+				background: var(--surface);
+				border: 1px solid rgba(255, 255, 255, 0.12);
+				border-radius: 999px;
+				box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+				height: 40px;
+				box-sizing: border-box;
+			}
 
-    .cmd .string, .use-command .string {
-        color: #2b0a10;
-        background: linear-gradient(180deg, rgba(245,169,184,0.95), rgba(245,169,184,0.12));
-        border-color: rgba(245,169,184,0.22);
-        text-shadow: 0 1px 6px rgba(245,169,184,0.08);
-        position: relative;
-    }
+			.search input {
+				flex: 1;
+				background: transparent;
+				border: 0;
+				outline: 0;
+				color: var(--text);
+				font-size: 16px;
+				padding: 4px;
+				min-width: 0;
+			}
 
-    .cmd .cmd-name, .use-command .cmd-name {
-        color: #d4af37;
-        font-weight: 900;
-        letter-spacing: 0.4px;
-        text-shadow: 0 2px 6px rgba(212,175,55,0.18), 0 6px 18px rgba(0,0,0,0.5);
-        padding-right: 6px;
-        display: inline-block;
-        transform-origin: center left;
-        transition: transform 180ms ease, text-shadow 220ms ease;
-    }
+			.search input::placeholder {
+				color: #9fb0b2;
+			}
 
-    .cmd .cmd-name:hover, .use-command .cmd-name:hover {
-        transform: translateY(-2px) scale(1.02);
-        text-shadow: 0 3px 10px rgba(212,175,55,0.28);
-    }
+			.tags {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 8px;
+				margin-top: 10px;
+			}
 
-    @media (max-width:720px){
-        .cmd .placeholder, .use-command .placeholder { padding: 2px 6px; border-radius: 8px; }
-        .cmd .cmd-name, .use-command .cmd-name { padding-right: 4px; }
-    }
+			.tag {
+				position: relative;
+				background: rgba(255, 255, 255, 0.08);
+				border: 1px solid rgba(124, 247, 212, 0.35);
+				backdrop-filter: blur(10px);
+				border-radius: 999px;
+				padding: 8px 12px;
+				cursor: pointer;
+				transition: background 0.3s ease, box-shadow 0.3s ease;
+				color: #c7fff0;
+				font-weight: 600;
+			}
 
-    .flags {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-        align-items: center;
-    }
+			.tag:hover {
+				background: rgba(124, 247, 212, 0.12);
+				box-shadow: 0 0 12px rgba(124, 247, 212, 0.6),
+					inset 0 0 6px rgba(124, 247, 212, 0.4);
+			}
 
-    .flag {
-        position: relative;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        min-width: 36px;
-        height: 28px;
-        padding: 0 8px;
-        border-radius: 8px;
-        font-weight: 800;
-        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-            monospace;
-        color: var(--accent);
-        background: var(--glass-bg);
-        border: 1px solid var(--glass-border);
-        box-shadow: 0 8px 18px rgba(0, 0, 0, 0.55),
-            inset 0 1px 0 rgba(255, 255, 255, 0.04);
-        cursor: default;
-        user-select: none;
-        transition: transform 0.12s ease, box-shadow 0.12s ease;
-    }
-    .flag:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6),
-            inset 0 1px 0 rgba(255, 255, 255, 0.04);
-    }
+			.tag::before {
+				content: "";
+				position: absolute;
+				inset: 0;
+				border-radius: 999px;
+				background: linear-gradient(
+					120deg,
+					rgba(255, 255, 255, 0.2),
+					transparent,
+					rgba(255, 255, 255, 0.2)
+				);
+				opacity: 0;
+				transition: opacity 0.4s ease, transform 0.4s ease;
+				transform: scale(0.8);
+				pointer-events: none;
+			}
 
-    .flag::after {
-        content: attr(data-tip);
-        position: absolute;
-        left: 50%;
-        transform: translate(-50%, -6px) scale(0.98);
-        bottom: calc(100% + 10px);
-        white-space: pre-wrap;
-        min-width: 180px;
-        max-width: 360px;
-        background: var(--glass-bg);
-        color: var(--text);
-        padding: 10px 12px;
-        border-radius: 12px;
-        border: 1px solid var(--glass-border);
-        backdrop-filter: blur(var(--blur));
-        box-shadow: 0 12px 36px rgba(0, 0, 0, 0.6);
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity 0.16s ease, transform 0.16s ease;
-        z-index: 50;
-        text-align: left;
-        font-size: 13px;
-        line-height: 1.3;
-    }
+			.tag:hover::before {
+				opacity: 1;
+				transform: scale(1.05);
+			}
 
-    .flag::before {
-        content: "";
-        position: absolute;
-        left: 50%;
-        bottom: calc(100% + 6px);
-        transform: translateX(-50%) rotate(45deg) scale(0.85);
-        width: 12px;
-        height: 12px;
-        background: var(--glass-bg);
-        border-left: 1px solid var(--glass-border);
-        border-top: 1px solid var(--glass-border);
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity 0.16s ease, transform 0.16s ease;
-        z-index: 49;
-    }
+			.tag[data-active="true"] {
+				background: var(--accent);
+				color: #0b0c10;
+				border-color: var(--accent-2);
+				box-shadow: 0 0 14px rgba(124, 247, 212, 0.8);
+			}
 
-    .flag:hover::after,
-    .flag:focus::after,
-    .flag:hover::before,
-    .flag:focus::before {
-        opacity: 1;
-        transform: translate(-50%, -12px) scale(1);
-    }
+			.tag input {
+				appearance: none;
+				width: 16px;
+				height: 16px;
+				border-radius: 5px;
+				outline: none;
+				display: none;
+			}
 
-    .flag:focus {
-        outline: none;
-        box-shadow: 0 0 0 3px var(--ring);
-        transform: translateY(-3px);
-    }
+			.select {
+				position: relative;
+				display: flex;
+				gap: 8px;
+				align-items: center;
+				background: rgba(255, 255, 255, 0.12);
+				border: 1px solid rgba(255, 255, 255, 0.2);
+				border-radius: 999px;
+				padding: 0 12px;
+				height: 40px;
+				box-sizing: border-box;
+				backdrop-filter: blur(var(--blur));
+				cursor: pointer;
+				min-width: 140px;
+			}
 
-    .uses-container {
-        position: relative;
-    }
+			.select select {
+				display: none;
+			}
 
-    .uses-toggle {
-        background: rgba(255, 255, 255, 0.08);
-        border: 1px solid rgba(124, 247, 212, 0.25);
-        border-radius: 999px;
-        padding: 6px 12px;
-        color: var(--accent);
-        font-size: 13px;
-        font-weight: 600;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        backdrop-filter: blur(var(--blur));
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-    }
+			.select-value {
+				font-weight: 600;
+				color: var(--text);
+				white-space: nowrap;
+			}
 
-    .uses-toggle:hover {
-        background: rgba(124, 247, 212, 0.12);
-        box-shadow: 0 0 12px rgba(124, 247, 212, 0.3);
-    }
+			.select-arrow {
+				width: 16px;
+				height: 16px;
+				transition: transform 0.3s ease;
+			}
 
-    .uses-menu {
-        position: absolute;
-        bottom: 100%;
-        right: 0;
-        width: 360px;
-        background: var(--glass-bg);
-        backdrop-filter: blur(20px);
-        border: 1px solid var(--glass-border);
-        border-radius: var(--radius-lg);
-        box-shadow: 0 8px 18px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.04);
-        padding: 12px;
-        margin-bottom: 8px;
-        opacity: 0;
-        visibility: hidden;
-        transform: translateY(10px);
-        transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
-        z-index: 20;
-        max-height: 300px;
-        overflow-y: auto;
-    }
+			.select.open .select-arrow {
+				transform: rotate(180deg);
+			}
 
-    .uses-menu.show {
-        opacity: 1;
-        visibility: visible;
-        transform: translateY(0);
-    }
+			.select-options {
+				position: absolute;
+				top: calc(100% + 8px);
+				left: 0;
+				width: 100%;
+				background: var(--glass-bg);
+				backdrop-filter: blur(20px);
+				border: 1px solid var(--glass-border);
+				border-radius: var(--radius-lg);
+				box-shadow: var(--shadow);
+				padding: 8px 0;
+				margin: 0;
+				list-style: none;
+				opacity: 0;
+				visibility: hidden;
+				transform: translateY(-10px);
+				transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+				z-index: 10;
+				max-height: 300px;
+				overflow-y: auto;
+			}
 
-    .use-item {
-        padding: 10px 12px;
-        border-radius: 8px;
-        margin-bottom: 8px;
-        cursor: pointer;
-        transition: background 0.2s ease;
-        display: flex;
-        flex-direction: column;
-        gap: 6px;
-    }
+			.select.open .select-options {
+				opacity: 1;
+				visibility: visible;
+				transform: translateY(0);
+			}
 
-    .use-item:hover {
-        background: rgba(124, 247, 212, 0.15);
-    }
+			.select-option {
+				padding: 10px 16px;
+				color: var(--text);
+				cursor: pointer;
+				transition: background 0.2s ease;
+			}
 
-    .use-command {
-        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-        font-weight: 700;
-        color: var(--accent);
-    }
+			.select-option:hover {
+				background: rgba(124, 247, 212, 0.25);
+			}
 
-    .use-desc {
-        font-size: 13px;
-        color: var(--muted);
-        line-height: 1.4;
-    }
+			.select-option[data-selected="true"] {
+				background: rgba(124, 247, 212, 0.35);
+				color: var(--accent);
+			}
 
-    .use-item:last-child {
-        margin-bottom: 0;
-    }
+			.card {
+				background: linear-gradient(
+					180deg,
+					rgba(255, 255, 255, 0.06),
+					rgba(255, 255, 255, 0.03)
+				);
+				border: 1px solid rgba(255, 255, 255, 0.12);
+				border-radius: var(--radius-lg);
+				overflow: hidden;
+				box-shadow: var(--shadow);
+			}
 
-    .toast {
-        position: fixed;
-        left: 50%;
-        bottom: 24px;
-        transform: translateX(-50%) translateY(20px);
-        background: var(--accent);
-        border: 1px solid var(--accent-2);
-        color: #0b0c10;
-        padding: 12px 18px;
-        border-radius: 999px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity 0.35s ease, transform 0.35s ease;
-        font-weight: 600;
-        z-index: 100;
-    }
-    .toast.show {
-        opacity: 1;
-        transform: translateX(-50%) translateY(0);
-    }
+			table {
+				width: 100%;
+				border-collapse: collapse;
+				font-size: 15px;
+			}
 
-    @media (prefers-reduced-motion: reduce) {
-        * {
-            animation: none !important;
-            transition: none !important;
-        }
-        .background {
-            animation: none;
-        }
-    }
-    @media (prefers-reduced-data: reduce) {
-        .background {
-            display: none;
-        }
-        body {
-            background: var(--bg);
-        }
-    }
+			caption {
+				text-align: left;
+				padding: 14px 16px;
+				color: var(--muted);
+				font-size: 13px;
+			}
 
-    @media (max-width: 720px) {
-        .controls {
-            grid-template-columns: 1fr;
-        }
-        .select {
-            width: 100%;
-        }
-        .select-options {
-            width: 100%;
-            left: 0;
-        }
-        thead th:nth-child(3),
-        td:nth-child(3) {
-            display: none;
-        }
-        .uses-menu {
-            width: 280px;
-            right: -20px;
-        }
-        
-        .github-link span {
-            display: none;
-        }
-        .github-link {
-            padding: 6px;
-            transform: translateY(-2px);
-        }
-        
-        .title-container {
-            align-items: center;
-        }
-    }
+			thead th {
+				position: sticky;
+				top: 0;
+				backdrop-filter: blur(var(--blur));
+				background: linear-gradient(
+					180deg,
+					rgba(0, 0, 0, 0.35),
+					rgba(0, 0, 0, 0.15)
+				);
+				font-size: 12.5px;
+				text-transform: uppercase;
+				letter-spacing: 0.08em;
+				color: #cdd7d9;
+				border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+				padding: 12px 14px;
+				text-align: left;
+				font-weight: 800;
+			}
 
-    @media (max-width: 480px) {
-        .github-link {
-            position: absolute;
-            top: 0;
-            right: 0;
-            transform: none;
-        }
-        
-        .title {
-            padding-right: 40px;
-        }
-    }
+			tbody tr {
+				transition: transform 0.2s ease, background 0.2s ease,
+					box-shadow 0.2s ease;
+				cursor: pointer;
+			}
 
+			tbody tr:hover {
+				transform: translateY(-1px);
+				background: rgba(255, 255, 255, 0.04);
+				box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+			}
+
+			td {
+				padding: 13px 14px;
+				border-bottom: 1px dashed rgba(255, 255, 255, 0.12);
+				vertical-align: top;
+			}
+
+			.cmd {
+				font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+					"Liberation Mono", "DejaVu Sans Mono", monospace;
+				font-weight: 700;
+			}
+
+			.flags,
+			.example {
+				font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+					"Liberation Mono", "DejaVu Sans Mono", monospace;
+				color: #d7f9ff;
+			}
+
+			.cmd .placeholder,
+			.use-command .placeholder {
+				display: inline-block;
+				padding: 2px 8px;
+				border-radius: 10px;
+				font-weight: 800;
+				font-size: 0.95em;
+				line-height: 1;
+				transform-origin: center;
+				box-shadow: 0 6px 14px rgba(0, 0, 0, 0.5),
+					inset 0 1px 0 rgba(255, 255, 255, 0.12);
+				border: 1px solid rgba(255, 255, 255, 0.08);
+				text-shadow: 0 1px 0 rgba(255, 255, 255, 0.08);
+				transition: transform 160ms ease, box-shadow 260ms ease;
+				vertical-align: middle;
+				margin: 0 2px;
+				-webkit-font-smoothing: subpixel-antialiased;
+				position: relative;
+			}
+
+			.cmd .placeholder::after,
+			.use-command .placeholder::after {
+				content: "";
+				position: absolute;
+				pointer-events: none;
+				display: block;
+				left: 6%;
+				top: 8%;
+				width: 60%;
+				height: 24%;
+				border-radius: 8px;
+				background: linear-gradient(
+					180deg,
+					rgba(255, 255, 255, 0.55),
+					rgba(255, 255, 255, 0.06)
+				);
+				opacity: 0.22;
+				transform: rotate(-10deg) translateZ(0);
+			}
+
+			@keyframes placeholderGlow {
+				0% {
+					box-shadow: 0 6px 12px rgba(0, 0, 0, 0.45), 0 0 0 rgba(0, 0, 0, 0);
+				}
+				50% {
+					box-shadow: 0 10px 28px rgba(0, 0, 0, 0.55),
+						0 0 8px rgba(0, 0, 0, 0.04);
+				}
+				100% {
+					box-shadow: 0 6px 12px rgba(0, 0, 0, 0.45), 0 0 0 rgba(0, 0, 0, 0);
+				}
+			}
+
+			.cmd .ip,
+			.use-command .ip {
+				color: white;
+				background: linear-gradient(
+					180deg,
+					rgba(255, 111, 185, 0.26),
+					rgba(255, 111, 185, 0.1)
+				);
+				border-color: rgba(255, 111, 185, 0.28);
+				text-shadow: 0 2px 8px rgba(255, 111, 185, 0.14);
+				animation: placeholderGlow 4.5s ease-in-out infinite;
+				position: relative;
+			}
+
+			.cmd .file,
+			.use-command .file {
+				color: #04242a;
+				background: linear-gradient(
+					180deg,
+					rgba(94, 224, 255, 0.95),
+					rgba(94, 224, 255, 0.16)
+				);
+				border-color: rgba(94, 224, 255, 0.35);
+				text-shadow: 0 2px 8px rgba(94, 224, 255, 0.1);
+				animation: placeholderGlow 5s ease-in-out infinite;
+				position: relative;
+			}
+
+			.cmd .dir,
+			.use-command .dir {
+				color: #04240a;
+				background: linear-gradient(
+					180deg,
+					rgba(107, 255, 176, 0.95),
+					rgba(107, 255, 176, 0.12)
+				);
+				border-color: rgba(107, 255, 176, 0.28);
+				text-shadow: 0 2px 8px rgba(107, 255, 176, 0.1);
+				animation: placeholderGlow 5s ease-in-out infinite;
+				position: relative;
+			}
+
+			.cmd .folder,
+			.use-command .folder {
+				color: #04240a;
+				background: linear-gradient(
+					180deg,
+					rgba(107, 255, 176, 0.95),
+					rgba(107, 255, 176, 0.12)
+				);
+				border-color: rgba(107, 255, 176, 0.28);
+				text-shadow: 0 2px 8px rgba(107, 255, 176, 0.1);
+				animation: placeholderGlow 5s ease-in-out infinite;
+				position: relative;
+			}
+
+			.cmd .string,
+			.use-command .string {
+				color: #2b0a10;
+				background: linear-gradient(
+					180deg,
+					rgba(245, 169, 184, 0.95),
+					rgba(245, 169, 184, 0.12)
+				);
+				border-color: rgba(245, 169, 184, 0.22);
+				text-shadow: 0 1px 6px rgba(245, 169, 184, 0.08);
+				position: relative;
+			}
+
+			.cmd .cmd-name,
+			.use-command .cmd-name {
+				color: #d4af37;
+				font-weight: 900;
+				letter-spacing: 0.4px;
+				text-shadow: 0 2px 6px rgba(212, 175, 55, 0.18),
+					0 6px 18px rgba(0, 0, 0, 0.5);
+				padding-right: 6px;
+				display: inline-block;
+				transform-origin: center left;
+				transition: transform 180ms ease, text-shadow 220ms ease;
+			}
+
+			.cmd .cmd-name:hover,
+			.use-command .cmd-name:hover {
+				transform: translateY(-2px) scale(1.02);
+				text-shadow: 0 3px 10px rgba(212, 175, 55, 0.28);
+			}
+
+			@media (max-width: 720px) {
+				.cmd .placeholder,
+				.use-command .placeholder {
+					padding: 2px 6px;
+					border-radius: 8px;
+				}
+				.cmd .cmd-name,
+				.use-command .cmd-name {
+					padding-right: 4px;
+				}
+			}
+
+			.flags {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 8px;
+				align-items: center;
+			}
+
+			.flag {
+				position: relative;
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				min-width: 36px;
+				height: 28px;
+				padding: 0 8px;
+				border-radius: 8px;
+				font-weight: 800;
+				font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+					monospace;
+				color: var(--accent);
+				background: var(--glass-bg);
+				border: 1px solid var(--glass-border);
+				box-shadow: 0 8px 18px rgba(0, 0, 0, 0.55),
+					inset 0 1px 0 rgba(255, 255, 255, 0.04);
+				cursor: default;
+				user-select: none;
+				transition: transform 0.12s ease, box-shadow 0.12s ease;
+			}
+
+			.flag:hover {
+				transform: translateY(-3px);
+				box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6),
+					inset 0 1px 0 rgba(255, 255, 255, 0.04);
+			}
+
+			.flag::after {
+				content: attr(data-tip);
+				position: absolute;
+				left: 50%;
+				transform: translate(-50%, -6px) scale(0.98);
+				bottom: calc(100% + 10px);
+				white-space: pre-wrap;
+				min-width: 180px;
+				max-width: 360px;
+				background: var(--glass-bg);
+				color: var(--text);
+				padding: 10px 12px;
+				border-radius: 12px;
+				border: 1px solid var(--glass-border);
+				backdrop-filter: blur(var(--blur));
+				box-shadow: 0 12px 36px rgba(0, 0, 0, 0.6);
+				opacity: 0;
+				pointer-events: none;
+				transition: opacity 0.16s ease, transform 0.16s ease;
+				z-index: 50;
+				text-align: left;
+				font-size: 13px;
+				line-height: 1.3;
+			}
+
+			.flag::before {
+				content: "";
+				position: absolute;
+				left: 50%;
+				bottom: calc(100% + 6px);
+				transform: translateX(-50%) rotate(45deg) scale(0.85);
+				width: 12px;
+				height: 12px;
+				background: var(--glass-bg);
+				border-left: 1px solid var(--glass-border);
+				border-top: 1px solid var(--glass-border);
+				opacity: 0;
+				pointer-events: none;
+				transition: opacity 0.16s ease, transform 0.16s ease;
+				z-index: 49;
+			}
+
+			.flag:hover::after,
+			.flag:focus::after,
+			.flag:hover::before,
+			.flag:focus::before {
+				opacity: 1;
+				transform: translate(-50%, -12px) scale(1);
+			}
+
+			.flag:focus {
+				outline: none;
+				box-shadow: 0 0 0 3px var(--ring);
+				transform: translateY(-3px);
+			}
+
+			.uses-container {
+				position: relative;
+			}
+
+			.uses-toggle {
+				background: rgba(255, 255, 255, 0.08);
+				border: 1px solid rgba(124, 247, 212, 0.25);
+				border-radius: 999px;
+				padding: 6px 12px;
+				color: var(--accent);
+				font-size: 13px;
+				font-weight: 600;
+				cursor: pointer;
+				transition: all 0.3s ease;
+				backdrop-filter: blur(var(--blur));
+				display: inline-flex;
+				align-items: center;
+				gap: 6px;
+			}
+
+			.uses-toggle:hover {
+				background: rgba(124, 247, 212, 0.12);
+				box-shadow: 0 0 12px rgba(124, 247, 212, 0.3);
+			}
+
+			.uses-menu {
+				position: absolute;
+				bottom: 100%;
+				right: 0;
+				width: 360px;
+				background: var(--glass-bg);
+				backdrop-filter: blur(20px);
+				border: 1px solid var(--glass-border);
+				border-radius: var(--radius-lg);
+				box-shadow: 0 8px 18px rgba(0, 0, 0, 0.55),
+					inset 0 1px 0 rgba(255, 255, 255, 0.04);
+				padding: 12px;
+				margin-bottom: 8px;
+				opacity: 0;
+				visibility: hidden;
+				transform: translateY(10px);
+				transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+				z-index: 20;
+				max-height: 300px;
+				overflow-y: auto;
+			}
+
+			.uses-menu.show {
+				opacity: 1;
+				visibility: visible;
+				transform: translateY(0);
+			}
+
+			.use-item {
+				padding: 10px 12px;
+				border-radius: 8px;
+				margin-bottom: 8px;
+				cursor: pointer;
+				transition: background 0.2s ease;
+				display: flex;
+				flex-direction: column;
+				gap: 6px;
+			}
+
+			.use-item:hover {
+				background: rgba(124, 247, 212, 0.15);
+			}
+
+			.use-command {
+				font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+					monospace;
+				font-weight: 700;
+				color: var(--accent);
+			}
+
+			.use-desc {
+				font-size: 13px;
+				color: var(--muted);
+				line-height: 1.4;
+			}
+
+			.use-item:last-child {
+				margin-bottom: 0;
+			}
+
+			.toast {
+				position: fixed;
+				left: 50%;
+				bottom: 24px;
+				transform: translateX(-50%) translateY(20px);
+				background: var(--accent);
+				border: 1px solid var(--accent-2);
+				color: #0b0c10;
+				padding: 12px 18px;
+				border-radius: 999px;
+				box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+				opacity: 0;
+				pointer-events: none;
+				transition: opacity 0.35s ease, transform 0.35s ease;
+				font-weight: 600;
+				z-index: 100;
+			}
+
+			.toast.show {
+				opacity: 1;
+				transform: translateX(-50%) translateY(0);
+			}
+
+			@media (prefers-reduced-motion: reduce) {
+				* {
+					animation: none !important;
+					transition: none !important;
+				}
+				.background {
+					animation: none;
+				}
+			}
+
+			@media (prefers-reduced-data: reduce) {
+				.background {
+					display: none;
+				}
+				body {
+					background: var(--bg);
+				}
+			}
+
+			@media (max-width: 720px) {
+				.controls {
+					grid-template-columns: 1fr;
+				}
+
+				.select {
+					width: 100%;
+				}
+
+				.select-options {
+					width: 100%;
+					left: 0;
+				}
+
+				thead th:nth-child(3),
+				td:nth-child(3) {
+					display: none;
+				}
+
+				.uses-menu {
+					width: 280px;
+					right: -20px;
+				}
+			}
 		</style>
 	</head>
 	<body>
@@ -786,14 +967,33 @@
 
 		<div class="wrap">
 			<header>
-				<div class="title-container">
-					<h1 class="title">Linux Commands</h1>
-					<a href="https://github.com/narenbiardo" class="github-link" aria-label="Visit my GitHub profile">
-						<svg class="github-icon" viewBox="0 0 24 24" aria-hidden="true">
-							<path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
-						</svg>
-						<span>narenbiardo</span>
-					</a>
+				<div class="header-content">
+					<div class="title-section">
+						<div class="title-container">
+							<h1 class="title">Linux Commands</h1>
+							<a
+								href="https://github.com/narenbiardo"
+								class="github-link"
+								aria-label="Visit my GitHub profile"
+							>
+								<svg class="github-icon" viewBox="0 0 24 24" aria-hidden="true">
+									<path
+										d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"
+									/>
+								</svg>
+								<span>narenbiardo</span>
+							</a>
+						</div>
+					</div>
+
+					<div class="console-container">
+						<div class="mini-console">
+							<div class="console-header">
+								<div class="console-title">user@narenbiardo:~</div>
+							</div>
+							<div class="console-content" id="consoleOutput"></div>
+						</div>
+					</div>
 				</div>
 			</header>
 
@@ -822,7 +1022,7 @@
 							autocomplete="off"
 						/>
 					</form>
-					
+
 					<div class="select">
 						<select id="category">
 							<option value="all">Categories</option>
@@ -834,20 +1034,50 @@
 							<option value="text">Text</option>
 						</select>
 						<div class="select-value">Categories</div>
-						<svg class="select-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+						<svg
+							class="select-arrow"
+							width="16"
+							height="16"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+						>
 							<polyline points="6 9 12 15 18 9"></polyline>
 						</svg>
-						
+
 						<ul class="select-options" role="listbox">
-							<li class="select-option" data-value="all" data-selected="true" role="option">Categories</li>
-							<li class="select-option" data-value="files" role="option">Files</li>
-							<li class="select-option" data-value="processes" role="option">Processes</li>
-							<li class="select-option" data-value="network" role="option">Network</li>
-							<li class="select-option" data-value="system" role="option">System</li>
-							<li class="select-option" data-value="archive" role="option">Archive</li>
-							<li class="select-option" data-value="text" role="option">Text</li>
+							<li
+								class="select-option"
+								data-value="all"
+								data-selected="true"
+								role="option"
+							>
+								Categories
+							</li>
+							<li class="select-option" data-value="files" role="option">
+								Files
+							</li>
+							<li class="select-option" data-value="processes" role="option">
+								Processes
+							</li>
+							<li class="select-option" data-value="network" role="option">
+								Network
+							</li>
+							<li class="select-option" data-value="system" role="option">
+								System
+							</li>
+							<li class="select-option" data-value="archive" role="option">
+								Archive
+							</li>
+							<li class="select-option" data-value="text" role="option">
+								Text
+							</li>
 						</ul>
 					</div>
+				</div>
 				<div class="tags" id="tags" aria-label="Tags"></div>
 			</section>
 
@@ -871,6 +1101,177 @@
 		</div>
 
 		<script>
+			function typeWriter(text, element, speed = 50, callback = null) {
+				let i = 0;
+				element.innerHTML += '<div class="console-line">';
+
+				function type() {
+					if (i < text.length) {
+						const lastLine = element.lastChild;
+						if (text.charAt(i) === "\n") {
+							element.innerHTML += '</div><div class="console-line">';
+						} else {
+							lastLine.innerHTML += text.charAt(i);
+						}
+						i++;
+						setTimeout(type, speed);
+
+						element.scrollTop = element.scrollHeight;
+					} else if (callback) {
+						callback();
+
+						element.scrollTop = element.scrollHeight;
+					}
+				}
+
+				type();
+			}
+
+			function typeWithHumanSpeed(
+				text,
+				element,
+				onComplete,
+				isDeleting = false
+			) {
+				let i = isDeleting ? text.length : 0;
+				const speed = isDeleting
+					? Math.floor(Math.random() * 50 + 25)
+					: Math.floor(Math.random() * 100 + 50);
+
+				function type() {
+					if (!isDeleting && i < text.length) {
+						element.textContent += text.charAt(i);
+						i++;
+						setTimeout(type, speed);
+					} else if (isDeleting && i > 0) {
+						element.textContent = element.textContent.slice(0, -1);
+						i--;
+						setTimeout(type, speed);
+					} else {
+						onComplete();
+					}
+
+					element.parentElement.scrollTop = element.parentElement.scrollHeight;
+				}
+
+				type();
+			}
+
+			function initConsole() {
+				const consoleOutput = document.getElementById("consoleOutput");
+
+				consoleOutput.innerHTML = "";
+
+				const promptLine = document.createElement("div");
+				promptLine.className = "console-line";
+				promptLine.textContent = "user@narenbiardo:~$ ";
+				consoleOutput.appendChild(promptLine);
+
+				const cursorSpan = document.createElement("span");
+				cursorSpan.className = "console-cursor";
+				promptLine.appendChild(cursorSpan);
+
+				consoleOutput.scrollTop = consoleOutput.scrollHeight;
+
+				setTimeout(startCommandCycle, 1000);
+			}
+
+			function getAllUsesCommands() {
+				const allUses = [];
+				COMMANDS.forEach(command => {
+					if (command.uses && command.uses.length > 0) {
+						command.uses.forEach(use => {
+							allUses.push(replacePlaceholders(use.command));
+						});
+					}
+				});
+				return allUses;
+			}
+
+			function getRandomCommand() {
+				const commands = getAllUsesCommands();
+				return commands[Math.floor(Math.random() * commands.length)];
+			}
+
+			function startCommandCycle() {
+				const consoleOutput = document.getElementById("consoleOutput");
+				const commands = getAllUsesCommands();
+
+				if (commands.length === 0) return;
+
+				function executeNextCommand() {
+					const randomCommand = getRandomCommand();
+
+					let lastLine = consoleOutput.lastElementChild;
+
+					if (
+						!lastLine ||
+						!lastLine.textContent.includes("user@narenbiardo:~$")
+					) {
+						lastLine = document.createElement("div");
+						lastLine.className = "console-line";
+						lastLine.textContent = "user@narenbiardo:~$ ";
+						consoleOutput.appendChild(lastLine);
+					}
+
+					const existingCursor = lastLine.querySelector(".console-cursor");
+					if (existingCursor) {
+						existingCursor.remove();
+					}
+
+					typeWithHumanSpeed(randomCommand, lastLine, function () {
+						const cursorSpan = document.createElement("span");
+						cursorSpan.className = "console-cursor";
+						lastLine.appendChild(cursorSpan);
+
+						consoleOutput.scrollTop = consoleOutput.scrollHeight;
+
+						setTimeout(() => {
+							const cursor = lastLine.querySelector(".console-cursor");
+							if (cursor) cursor.remove();
+
+							typeWithHumanSpeed(
+								randomCommand,
+								lastLine,
+								function () {
+									const newCursor = document.createElement("span");
+									newCursor.className = "console-cursor";
+									lastLine.appendChild(newCursor);
+
+									consoleOutput.scrollTop = consoleOutput.scrollHeight;
+									setTimeout(executeNextCommand, 1500);
+								},
+								true
+							);
+						}, 2500);
+					});
+				}
+
+				executeNextCommand();
+			}
+
+			document.addEventListener("DOMContentLoaded", function () {
+				initConsole();
+			});
+
+			function replacePlaceholders(command) {
+				return command
+					.replace(/\{ip\}/g, "192.168.1.100")
+					.replace(/\{file\}/g, "log.txt")
+					.replace(/\{file1\}/g, "file1.txt")
+					.replace(/\{file2\}/g, "file2.txt")
+					.replace(/\{dir\}/g, "Documents")
+					.replace(/\{dir1\}/g, "source")
+					.replace(/\{dir2\}/g, "destination")
+					.replace(/\{string\}/g, '"hello world"')
+					.replace(/\{port\}/g, "8080")
+					.replace(/\{user\}/g, "john")
+					.replace(/\{command\}/g, "ls -la")
+					.replace(/\{newname\}/g, "renamed.txt")
+					.replace(/\{old\}/g, "oldfile.txt")
+					.replace(/\{new\}/g, "newfile.txt");
+			}
+
 			function escapeAttr(s = "") {
 				return String(s)
 					.replaceAll("&", "&amp;")
@@ -880,38 +1281,62 @@
 					.replaceAll(">", "&gt;");
 			}
 
-        function formatCommand(cmd) {
-        if (!cmd) return "";
+			function formatCommand(cmd) {
+				if (!cmd) return "";
 
-        let s = cmd.replace(/\{folder\}/g, "{dir}");
+				let s = cmd.replace(/\{folder\}/g, "{dir}");
 
-        s = s
-            .replace(/\{ip\}/g, '<span class="placeholder ip">{ip}</span>')
-            .replace(/\{file\}/g, '<span class="placeholder file">{file}</span>')
-            .replace(/\{dir\}/g, '<span class="placeholder dir">{dir}</span>')
-            .replace(/\{string\}/g, '<span class="placeholder string">{string}</span>');
+				s = s
+					.replace(/\{ip\}/g, '<span class="placeholder ip">{ip}</span>')
+					.replace(/\{file\}/g, '<span class="placeholder file">{file}</span>')
+					.replace(/\{dir\}/g, '<span class="placeholder dir">{dir}</span>')
+					.replace(
+						/\{string\}/g,
+						'<span class="placeholder string">{string}</span>'
+					);
 
-        s = s.replace(/^(\s*)([^\s<]+)/, function (match, leading, firstToken) {
-            if (/^<span/.test(firstToken)) return match;
-            return leading + '<span class="cmd-name">' + firstToken + '</span>';
-        });
+				s = s.replace(/^(\s*)([^\s<]+)/, function (match, leading, firstToken) {
+					if (/^<span/.test(firstToken)) return match;
+					return leading + '<span class="cmd-name">' + firstToken + "</span>";
+				});
 
-        return s;
-        }
+				return s;
+			}
 
 			const COMMANDS = [
 				{
 					cmd: "ssh {ip}",
 					desc: "Connect to a remote server",
 					flags: [
-						{flag: "-p", desc: "Specify port number", example: "ssh -p 2222 user@host"},
-						{flag: "-i", desc: "Identity file for authentication", example: "ssh -i key.pem user@host"},
-						{flag: "-l", desc: "Specify login name", example: "ssh -l username host"}
+						{
+							flag: "-p",
+							desc: "Specify port number",
+							example: "ssh -p 2222 user@host",
+						},
+						{
+							flag: "-i",
+							desc: "Identity file for authentication",
+							example: "ssh -i key.pem user@host",
+						},
+						{
+							flag: "-l",
+							desc: "Specify login name",
+							example: "ssh -l username host",
+						},
 					],
 					uses: [
-						{command: "ssh user@{ip}", desc: "Basic SSH connection to a server"},
-						{command: "ssh -p {port} user@{ip}", desc: "SSH connection on a non-standard port"},
-						{command: "ssh -i {file} user@{ip}", desc: "SSH using a specific private key"}
+						{
+							command: "ssh user@{ip}",
+							desc: "Basic SSH connection to a server",
+						},
+						{
+							command: "ssh -p {port} user@{ip}",
+							desc: "SSH connection on a non-standard port",
+						},
+						{
+							command: "ssh -i {file} user@{ip}",
+							desc: "SSH using a specific private key",
+						},
 					],
 					tags: ["network"],
 				},
@@ -919,12 +1344,23 @@
 					cmd: "pbrun su",
 					desc: "Become root user",
 					flags: [
-						{flag: "-u", desc: "Switch to specified user", example: "pbrun su -u username"},
-						{flag: "-l", desc: "List available commands", example: "pbrun su -l"}
+						{
+							flag: "-u",
+							desc: "Switch to specified user",
+							example: "pbrun su -u username",
+						},
+						{
+							flag: "-l",
+							desc: "List available commands",
+							example: "pbrun su -l",
+						},
 					],
 					uses: [
-						{command: "pbrun su", desc: "Switch to root user"},
-						{command: "pbrun su -u {user}", desc: "Switch to a specific user"}
+						{ command: "pbrun su", desc: "Switch to root user" },
+						{
+							command: "pbrun su -u {user}",
+							desc: "Switch to a specific user",
+						},
 					],
 					tags: ["system"],
 				},
@@ -932,13 +1368,24 @@
 					cmd: "bash",
 					desc: "Open a Bash shell",
 					flags: [
-						{flag: "-c", desc: "Execute command string", example: "bash -c 'echo hello'"},
-						{flag: "-l", desc: "Make bash act as login shell", example: "bash -l"}
+						{
+							flag: "-c",
+							desc: "Execute command string",
+							example: "bash -c 'echo hello'",
+						},
+						{
+							flag: "-l",
+							desc: "Make bash act as login shell",
+							example: "bash -l",
+						},
 					],
 					uses: [
-						{command: "bash", desc: "Start a new Bash shell"},
-						{command: "bash -c '{command}'", desc: "Execute a single command and exit"},
-						{command: "bash {file}", desc: "Execute a Bash script"}
+						{ command: "bash", desc: "Start a new Bash shell" },
+						{
+							command: "bash -c '{command}'",
+							desc: "Execute a single command and exit",
+						},
+						{ command: "bash {file}", desc: "Execute a Bash script" },
 					],
 					tags: ["system"],
 				},
@@ -946,17 +1393,28 @@
 					cmd: "ls",
 					desc: "List files",
 					flags: [
-						{flag: "-l", desc: "Use long listing format", example: "ls -l"},
-						{flag: "-t", desc: "Sort by modification time", example: "ls -t"},
-						{flag: "-r", desc: "Reverse order while sorting", example: "ls -r"},
-                        {flag: "-1", desc: "List one file per line", example: "ls -1"},
-						{flag: "--sort", desc: "Sort by size, time, version, etc.", example: "ls --sort=size"}
+						{ flag: "-l", desc: "Use long listing format", example: "ls -l" },
+						{ flag: "-t", desc: "Sort by modification time", example: "ls -t" },
+						{
+							flag: "-r",
+							desc: "Reverse order while sorting",
+							example: "ls -r",
+						},
+						{ flag: "-1", desc: "List one file per line", example: "ls -1" },
+						{
+							flag: "--sort",
+							desc: "Sort by size, time, version, etc.",
+							example: "ls --sort=size",
+						},
 					],
 					uses: [
-						{command: "ls", desc: "List files in current directory"},
-						{command: "ls -l", desc: "Detailed list with permissions and sizes"},
-						{command: "ls -la", desc: "Show all files including hidden ones"},
-						{command: "ls -ltr", desc: "List files by time, oldest first"}
+						{ command: "ls", desc: "List files in current directory" },
+						{
+							command: "ls -l",
+							desc: "Detailed list with permissions and sizes",
+						},
+						{ command: "ls -la", desc: "Show all files including hidden ones" },
+						{ command: "ls -ltr", desc: "List files by time, oldest first" },
 					],
 					tags: ["files"],
 				},
@@ -964,15 +1422,36 @@
 					cmd: "rm *",
 					desc: "Force delete all files in current directory",
 					flags: [
-						{flag: "-f", desc: "Force removal without confirmation", example: "rm -f file.txt"},
-						{flag: "-r", desc: "Remove directories recursively", example: "rm -r directory"},
-						{flag: "-i", desc: "Interactive removal prompt", example: "rm -i file.txt"}
-				],
+						{
+							flag: "-f",
+							desc: "Force removal without confirmation",
+							example: "rm -f file.txt",
+						},
+						{
+							flag: "-r",
+							desc: "Remove directories recursively",
+							example: "rm -r directory",
+						},
+						{
+							flag: "-i",
+							desc: "Interactive removal prompt",
+							example: "rm -i file.txt",
+						},
+					],
 					uses: [
-						{command: "rm {file}", desc: "Remove a single file"},
-						{command: "rm -r {dir}", desc: "Remove a directory and its contents"},
-						{command: "rm -f {file}", desc: "Force remove without confirmation"},
-						{command: "rm -i *.txt", desc: "Interactively remove multiple text files"}
+						{ command: "rm {file}", desc: "Remove a single file" },
+						{
+							command: "rm -r {dir}",
+							desc: "Remove a directory and its contents",
+						},
+						{
+							command: "rm -f {file}",
+							desc: "Force remove without confirmation",
+						},
+						{
+							command: "rm -i *.txt",
+							desc: "Interactively remove multiple text files",
+						},
 					],
 					tags: ["files"],
 				},
@@ -980,15 +1459,36 @@
 					cmd: "cp {file} {dir}",
 					desc: "Copy file to directory",
 					flags: [
-						{flag: "-r", desc: "Copy directories recursively", example: "cp -r dir1 dir2"},
-						{flag: "-i", desc: "Prompt before overwrite", example: "cp -i file1 file2"},
-						{flag: "-v", desc: "Verbose output", example: "cp -v file1 file2"}
+						{
+							flag: "-r",
+							desc: "Copy directories recursively",
+							example: "cp -r dir1 dir2",
+						},
+						{
+							flag: "-i",
+							desc: "Prompt before overwrite",
+							example: "cp -i file1 file2",
+						},
+						{
+							flag: "-v",
+							desc: "Verbose output",
+							example: "cp -v file1 file2",
+						},
 					],
 					uses: [
-						{command: "cp {file} {dir}", desc: "Copy a file to a directory"},
-						{command: "cp -r {dir1} {dir2}", desc: "Copy a directory recursively"},
-						{command: "cp -i {file1} {file2}", desc: "Copy with overwrite confirmation"},
-						{command: "cp -v {file}* {dir}", desc: "Verbose copy of multiple files"}
+						{ command: "cp {file} {dir}", desc: "Copy a file to a directory" },
+						{
+							command: "cp -r {dir1} {dir2}",
+							desc: "Copy a directory recursively",
+						},
+						{
+							command: "cp -i {file1} {file2}",
+							desc: "Copy with overwrite confirmation",
+						},
+						{
+							command: "cp -v {file}* {dir}",
+							desc: "Verbose copy of multiple files",
+						},
 					],
 					tags: ["files"],
 				},
@@ -996,15 +1496,36 @@
 					cmd: "mv {file} {dir}",
 					desc: "Move file to directory",
 					flags: [
-						{flag: "-i", desc: "Prompt before overwrite", example: "mv -i file1 file2"},
-						{flag: "-v", desc: "Verbose output", example: "mv -v file1 file2"},
-						{flag: "-n", desc: "Do not overwrite existing file", example: "mv -n file1 file2"}
+						{
+							flag: "-i",
+							desc: "Prompt before overwrite",
+							example: "mv -i file1 file2",
+						},
+						{
+							flag: "-v",
+							desc: "Verbose output",
+							example: "mv -v file1 file2",
+						},
+						{
+							flag: "-n",
+							desc: "Do not overwrite existing file",
+							example: "mv -n file1 file2",
+						},
 					],
 					uses: [
-						{command: "mv {file} {newname}", desc: "Rename a file"},
-						{command: "mv {file} {dir}", desc: "Move a file to another directory"},
-						{command: "mv -i {old} {new}", desc: "Move with overwrite confirmation"},
-						{command: "mv *.txt {dir}", desc: "Move multiple files to a directory"}
+						{ command: "mv {file} {newname}", desc: "Rename a file" },
+						{
+							command: "mv {file} {dir}",
+							desc: "Move a file to another directory",
+						},
+						{
+							command: "mv -i {old} {new}",
+							desc: "Move with overwrite confirmation",
+						},
+						{
+							command: "mv *.txt {dir}",
+							desc: "Move multiple files to a directory",
+						},
 					],
 					tags: ["files"],
 				},
@@ -1012,15 +1533,28 @@
 					cmd: "df {dir}",
 					desc: "Show disk space usage in human-readable format",
 					flags: [
-						{flag: "-h", desc: "Human-readable sizes (e.g., 1K, 234M, 2G)", example: "df -h"},
-						{flag: "-T", desc: "Display file system type", example: "df -T"},
-						{flag: "-i", desc: "Show inode information", example: "df -i"}
+						{
+							flag: "-h",
+							desc: "Human-readable sizes (e.g., 1K, 234M, 2G)",
+							example: "df -h",
+						},
+						{ flag: "-T", desc: "Display file system type", example: "df -T" },
+						{ flag: "-i", desc: "Show inode information", example: "df -i" },
 					],
 					uses: [
-						{command: "df", desc: "Show disk space usage for all filesystems"},
-						{command: "df -h", desc: "Show human-readable disk space usage"},
-						{command: "df -h {dir}", desc: "Show disk space for a specific directory"},
-						{command: "df -i", desc: "Show inode usage instead of block usage"}
+						{
+							command: "df",
+							desc: "Show disk space usage for all filesystems",
+						},
+						{ command: "df -h", desc: "Show human-readable disk space usage" },
+						{
+							command: "df -h {dir}",
+							desc: "Show disk space for a specific directory",
+						},
+						{
+							command: "df -i",
+							desc: "Show inode usage instead of block usage",
+						},
 					],
 					tags: ["system"],
 				},
@@ -1028,15 +1562,36 @@
 					cmd: "cat {file}",
 					desc: "Display file contents",
 					flags: [
-						{flag: "-n", desc: "Number all output lines", example: "cat -n file.txt"},
-						{flag: "-b", desc: "Number non-empty output lines", example: "cat -b file.txt"},
-						{flag: "-s", desc: "Squeeze multiple adjacent empty lines", example: "cat -s file.txt"}
+						{
+							flag: "-n",
+							desc: "Number all output lines",
+							example: "cat -n file.txt",
+						},
+						{
+							flag: "-b",
+							desc: "Number non-empty output lines",
+							example: "cat -b file.txt",
+						},
+						{
+							flag: "-s",
+							desc: "Squeeze multiple adjacent empty lines",
+							example: "cat -s file.txt",
+						},
 					],
 					uses: [
-						{command: "cat {file}", desc: "Display contents of a file"},
-						{command: "cat -n {file}", desc: "Display contents with line numbers"},
-						{command: "cat {file1} {file2}", desc: "Concatenate multiple files"},
-						{command: "cat > {newfile}", desc: "Create a new file from standard input"}
+						{ command: "cat {file}", desc: "Display contents of a file" },
+						{
+							command: "cat -n {file}",
+							desc: "Display contents with line numbers",
+						},
+						{
+							command: "cat {file1} {file2}",
+							desc: "Concatenate multiple files",
+						},
+						{
+							command: "cat > {newfile}",
+							desc: "Create a new file from standard input",
+						},
 					],
 					tags: ["files", "text"],
 				},
@@ -1044,15 +1599,25 @@
 					cmd: "gzip {file}",
 					desc: "Compress file using gzip",
 					flags: [
-						{flag: "-k", desc: "Keep original file", example: "gzip -k file.txt"},
-						{flag: "-v", desc: "Verbose mode", example: "gzip -v file.txt"},
-						{flag: "-d", desc: "Decompress", example: "gzip -d file.txt.gz"}
+						{
+							flag: "-k",
+							desc: "Keep original file",
+							example: "gzip -k file.txt",
+						},
+						{ flag: "-v", desc: "Verbose mode", example: "gzip -v file.txt" },
+						{ flag: "-d", desc: "Decompress", example: "gzip -d file.txt.gz" },
 					],
 					uses: [
-						{command: "gzip {file}", desc: "Compress a file (creates file.txt.gz)"},
-						{command: "gzip -d {file}.gz", desc: "Decompress a gzipped file"},
-						{command: "gzip -k {file}", desc: "Compress but keep original file"},
-						{command: "gzip -9 {file}", desc: "Maximum compression (slower)"}
+						{
+							command: "gzip {file}",
+							desc: "Compress a file (creates file.txt.gz)",
+						},
+						{ command: "gzip -d {file}.gz", desc: "Decompress a gzipped file" },
+						{
+							command: "gzip -k {file}",
+							desc: "Compress but keep original file",
+						},
+						{ command: "gzip -9 {file}", desc: "Maximum compression (slower)" },
 					],
 					tags: ["files", "archive"],
 				},
@@ -1060,15 +1625,33 @@
 					cmd: "hostname",
 					desc: "Show system hostname",
 					flags: [
-						{flag: "-I", desc: "Display all network addresses", example: "hostname -I"},
-						{flag: "-f", desc: "Display FQDN (Fully Qualified Domain Name)", example: "hostname -f"},
-						{flag: "-d", desc: "Display DNS domain name", example: "hostname -d"}
+						{
+							flag: "-I",
+							desc: "Display all network addresses",
+							example: "hostname -I",
+						},
+						{
+							flag: "-f",
+							desc: "Display FQDN (Fully Qualified Domain Name)",
+							example: "hostname -f",
+						},
+						{
+							flag: "-d",
+							desc: "Display DNS domain name",
+							example: "hostname -d",
+						},
 					],
 					uses: [
-						{command: "hostname", desc: "Show the system hostname"},
-						{command: "hostname -I", desc: "Show all IP addresses"},
-						{command: "hostname -f", desc: "Show fully qualified domain name"},
-						{command: "hostname {newname}", desc: "Temporarily change hostname (requires root)"}
+						{ command: "hostname", desc: "Show the system hostname" },
+						{ command: "hostname -I", desc: "Show all IP addresses" },
+						{
+							command: "hostname -f",
+							desc: "Show fully qualified domain name",
+						},
+						{
+							command: "hostname {newname}",
+							desc: "Temporarily change hostname (requires root)",
+						},
 					],
 					tags: ["system"],
 				},
@@ -1076,13 +1659,21 @@
 					cmd: "pwd",
 					desc: "Print working directory",
 					flags: [
-						{flag: "-L", desc: "Print logical current directory", example: "pwd -L"},
-						{flag: "-P", desc: "Print physical directory without symlinks", example: "pwd -P"}
+						{
+							flag: "-L",
+							desc: "Print logical current directory",
+							example: "pwd -L",
+						},
+						{
+							flag: "-P",
+							desc: "Print physical directory without symlinks",
+							example: "pwd -P",
+						},
 					],
 					uses: [
-						{command: "pwd", desc: "Show current working directory"},
-						{command: "pwd -P", desc: "Show physical path without symlinks"},
-						{command: "pwd -L", desc: "Show logical path (with symlinks)"}
+						{ command: "pwd", desc: "Show current working directory" },
+						{ command: "pwd -P", desc: "Show physical path without symlinks" },
+						{ command: "pwd -L", desc: "Show logical path (with symlinks)" },
 					],
 					tags: ["files", "basics"],
 				},
@@ -1091,9 +1682,9 @@
 					desc: "Close current session",
 					flags: [],
 					uses: [
-						{command: "exit", desc: "Exit the current shell session"},
-						{command: "exit 0", desc: "Exit with success status code"},
-						{command: "exit 1", desc: "Exit with error status code"}
+						{ command: "exit", desc: "Exit the current shell session" },
+						{ command: "exit 0", desc: "Exit with success status code" },
+						{ command: "exit 1", desc: "Exit with error status code" },
 					],
 					tags: ["system"],
 				},
@@ -1101,15 +1692,30 @@
 					cmd: "less {file}",
 					desc: "View file with pagination",
 					flags: [
-						{flag: "-N", desc: "Show line numbers", example: "less -N file.txt"},
-						{flag: "-i", desc: "Ignore case in searches", example: "less -i file.txt"},
-						{flag: "-S", desc: "Chop long lines instead of wrapping", example: "less -S file.txt"}
+						{
+							flag: "-N",
+							desc: "Show line numbers",
+							example: "less -N file.txt",
+						},
+						{
+							flag: "-i",
+							desc: "Ignore case in searches",
+							example: "less -i file.txt",
+						},
+						{
+							flag: "-S",
+							desc: "Chop long lines instead of wrapping",
+							example: "less -S file.txt",
+						},
 					],
 					uses: [
-						{command: "less {file}", desc: "View a file with navigation"},
-						{command: "less -N {file}", desc: "View with line numbers"},
-						{command: "less -S {file}", desc: "View without line wrapping"},
-						{command: "ls -la | less", desc: "Pipe command output to less for paging"}
+						{ command: "less {file}", desc: "View a file with navigation" },
+						{ command: "less -N {file}", desc: "View with line numbers" },
+						{ command: "less -S {file}", desc: "View without line wrapping" },
+						{
+							command: "ls -la | less",
+							desc: "Pipe command output to less for paging",
+						},
 					],
 					tags: ["files", "text"],
 				},
@@ -1130,13 +1736,14 @@
 			function renderTags() {
 				tagsWrap.innerHTML = TAGS.map(
 					t => `
-      <label class="tag" data-active="false" data-tag="${t}">
-        <input type="checkbox" aria-label="${t} tag" />
-        <span>${t}</span>
-      </label>
-    `
+                    <label class="tag" data-active="false" data-tag="${t}">
+                        <input type="checkbox" aria-label="${t} tag" />
+                        <span>${t}</span>
+                    </label>
+                    `
 				).join("");
 			}
+
 			function copy(text, commandName) {
 				if (!navigator.clipboard) {
 					const ta = document.createElement("textarea");
@@ -1148,11 +1755,13 @@
 					showToast(`Copied: ${commandName}`);
 					return;
 				}
+
 				navigator.clipboard
 					.writeText(text)
 					.then(() => showToast(`Copied: ${commandName}`))
 					.catch(() => showToast("Copy failed"));
 			}
+
 			let toastTimer;
 			function showToast(msg) {
 				toast.textContent = msg;
@@ -1165,45 +1774,57 @@
 				if (!flags || flags.length === 0) {
 					return '<span class="flag" data-tip="No flags"></span>';
 				}
-				
-				return flags.map(f => {
-					const tip = `${f.desc}\nExample: ${f.example}`;
-					return `<span class="flag" tabindex="0" role="button" data-tip="${escapeAttr(tip)}" aria-label="Flag info">${escapeAttr(f.flag)}</span>`;
-				}).join('');
+
+				return flags
+					.map(f => {
+						const tip = `${f.desc}\nExample: ${f.example}`;
+						return `<span class="flag" tabindex="0" role="button" data-tip="${escapeAttr(
+							tip
+						)}" aria-label="Flag info">${escapeAttr(f.flag)}</span>`;
+					})
+					.join("");
 			}
 
 			function usesTemplate(uses) {
 				if (!uses || uses.length === 0) {
 					return '<div class="uses-container"><button class="uses-toggle">No uses</button></div>';
 				}
-				
-				const usesItems = uses.map(use => `
-					<div class="use-item" data-command="${escapeAttr(use.command)}">
-						<div class="use-command">${formatCommand(use.command)}</div>
-						<div class="use-desc">${use.desc}</div>
-					</div>
-				`).join('');
-				
+
+				const usesItems = uses
+					.map(
+						use => `
+                        <div class="use-item" data-command="${escapeAttr(
+													use.command
+												)}">
+                            <div class="use-command">${formatCommand(
+															use.command
+														)}</div>
+                            <div class="use-desc">${use.desc}</div>
+                        </div>
+                    `
+					)
+					.join("");
+
 				return `
-					<div class="uses-container">
-						<button class="uses-toggle">
-							View uses
-							<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-								<polyline points="18 15 12 9 6 15"></polyline>
-							</svg>
-						</button>
-						<div class="uses-menu">
-							${usesItems}
-						</div>
-					</div>
-				`;
+                        <div class="uses-container">
+                            <button class="uses-toggle">
+                                View uses
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="18 15 12 9 6 15"></polyline>
+                                </svg>
+                            </button>
+                            <div class="uses-menu">
+                                ${usesItems}
+                            </div>
+                        </div>
+                    `;
 			}
 
 			function rowTemplate(c) {
 				const flagsCell = flagsTemplate(c.flags);
 				const usesCell = usesTemplate(c.uses);
 				return `
-      <tr data-tags="${c.tags.join(",")}" data-cat="${
+              <tr data-tags="${c.tags.join(",")}" data-cat="${
 					c.tags.find(t =>
 						[
 							"files",
@@ -1215,26 +1836,30 @@
 						].includes(t)
 					) || "other"
 				}">
-        <td>
-          <span class="cmd">${formatCommand(c.cmd)}</span>
-        </td>
-        <td>${c.desc}</td>
-        <td class="flags">${flagsCell}</td>
-        <td class="uses">${usesCell}</td>
-      </tr>`;
+                <td>
+                  <span class="cmd">${formatCommand(c.cmd)}</span>
+                </td>
+                <td>${c.desc}</td>
+                <td class="flags">${flagsCell}</td>
+                <td class="uses">${usesCell}</td>
+              </tr>`;
 			}
+
 			function renderRows(list) {
 				tbody.innerHTML = list.map(rowTemplate).join("");
 			}
+
 			function activeTags() {
 				return $$(".tag input:checked", tagsWrap).map(
 					cb => cb.parentElement.dataset.tag
 				);
 			}
+
 			function applyFilters() {
 				const q = search.value.trim().toLowerCase(),
 					cat = category.value,
 					tags = new Set(activeTags());
+
 				const filtered = COMMANDS.filter(c => {
 					const hay = (
 						c.cmd +
@@ -1245,12 +1870,15 @@
 						" " +
 						c.uses.map(u => u.command + " " + u.desc).join(" ")
 					).toLowerCase();
+
 					const matchQ = !q || hay.includes(q);
 					const matchCat = cat === "all" || c.tags.includes(cat);
 					const matchTags =
 						tags.size === 0 || [...tags].every(t => c.tags.includes(t));
+
 					return matchQ && matchCat && matchTags;
 				});
+
 				renderRows(filtered);
 			}
 
@@ -1258,77 +1886,77 @@
 				selectValue.textContent = text;
 
 				selectOptions.forEach(opt => {
-					opt.dataset.selected = (opt.dataset.value === value);
+					opt.dataset.selected = opt.dataset.value === value;
 				});
 			}
 
 			renderTags();
 			renderRows(COMMANDS);
 
-			document.addEventListener('click', function(e) {
-				if (!e.target.closest('.uses-container')) {
-					$$('.uses-menu').forEach(menu => menu.classList.remove('show'));
+			document.addEventListener("click", function (e) {
+				if (!e.target.closest(".uses-container")) {
+					$$(".uses-menu").forEach(menu => menu.classList.remove("show"));
 				}
-				
-				const toggleBtn = e.target.closest('.uses-toggle');
+
+				const toggleBtn = e.target.closest(".uses-toggle");
 				if (toggleBtn) {
 					e.stopPropagation();
 					const menu = toggleBtn.nextElementSibling;
-					const isOpen = menu.classList.contains('show');
-					
-					$$('.uses-menu.show').forEach(m => {
-						if (m !== menu) m.classList.remove('show');
+					const isOpen = menu.classList.contains("show");
+
+					$$(".uses-menu.show").forEach(m => {
+						if (m !== menu) m.classList.remove("show");
 					});
-					
-					menu.classList.toggle('show', !isOpen);
+
+					menu.classList.toggle("show", !isOpen);
 				}
-				
-				const useItem = e.target.closest('.use-item');
+
+				const useItem = e.target.closest(".use-item");
 				if (useItem) {
 					const command = useItem.dataset.command;
-					copy(command, command.split(' ')[0]);
+					copy(command, command.split(" ")[0]);
 
-					useItem.closest('.uses-menu').classList.remove('show');
+					useItem.closest(".uses-menu").classList.remove("show");
 				}
 			});
 
 			search.addEventListener("input", applyFilters);
-			category.addEventListener("change", function() {
+			category.addEventListener("change", function () {
 				const selectedOption = this.options[this.selectedIndex];
 				updateSelectValue(this.value, selectedOption.text);
 				applyFilters();
 			});
-			
-			selectContainer.addEventListener("click", function(e) {
+
+			selectContainer.addEventListener("click", function (e) {
 				e.stopPropagation();
 				this.classList.toggle("open");
 			});
-			
-			document.addEventListener("click", function() {
+
+			document.addEventListener("click", function () {
 				selectContainer.classList.remove("open");
 			});
-			
+
 			const customSelectOptions = $(".select-options");
-			customSelectOptions.addEventListener("click", function(e) {
+			customSelectOptions.addEventListener("click", function (e) {
 				e.stopPropagation();
 			});
-			
+
 			selectOptions.forEach(option => {
-				option.addEventListener("click", function() {
+				option.addEventListener("click", function () {
 					const value = this.dataset.value;
 					const text = this.textContent;
-					
+
 					updateSelectValue(value, text);
-					
+
 					category.value = value;
-					
-					const event = new Event('change');
+
+					const event = new Event("change");
 					category.dispatchEvent(event);
-					
+
 					selectContainer.classList.remove("open");
 				});
 			});
-			
+
 			tagsWrap.addEventListener("change", e => {
 				const tag = e.target.closest(".tag");
 				if (tag)
@@ -1337,16 +1965,17 @@
 						: "false";
 				applyFilters();
 			});
+
 			tbody.addEventListener("click", e => {
 				const row = e.target.closest("tr");
 				if (!row) return;
-				
+
 				const cmdCell = e.target.closest("td");
 				if (!cmdCell) return;
-				
+
 				const cellIndex = [...row.children].indexOf(cmdCell);
 				const cmdName = row.querySelector(".cmd").textContent;
-				
+
 				if (cellIndex === 0) {
 					copy(cmdName, cmdName);
 				}
@@ -1365,11 +1994,12 @@
 			const observer = new MutationObserver(() => {
 				$$("#tbody tr td:first-child").forEach(td => (td.tabIndex = 0));
 			});
+
 			observer.observe(tbody, { childList: true });
 
-			window.addEventListener('scroll', function() {
+			window.addEventListener("scroll", function () {
 				const scrollY = window.scrollY;
-				const background = document.querySelector('.background');
+				const background = document.querySelector(".background");
 				background.style.transform = `translateY(${scrollY * 0.2}px)`;
 			});
 		</script>
